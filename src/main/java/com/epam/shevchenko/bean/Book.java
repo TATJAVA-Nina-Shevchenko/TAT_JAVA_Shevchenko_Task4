@@ -5,18 +5,27 @@ import java.io.Serializable;
 public class Book implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	private long id;
 	private String title;
-
 	private String author;
 
 	public Book() {
 		super();
 	}
 
-	public Book(String title, String author) {
+	public Book(long id, String title, String author) {
 		super();
+		this.id = id;
 		this.title = title;
 		this.author = author;
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
 	}
 
 	public String getTitle() {
@@ -40,6 +49,7 @@ public class Book implements Serializable {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((author == null) ? 0 : author.hashCode());
+		result = prime * result + (int) (id ^ (id >>> 32));
 		result = prime * result + ((title == null) ? 0 : title.hashCode());
 		return result;
 	}
@@ -58,6 +68,8 @@ public class Book implements Serializable {
 				return false;
 		} else if (!author.equals(other.author))
 			return false;
+		if (id != other.id)
+			return false;
 		if (title == null) {
 			if (other.title != null)
 				return false;
@@ -65,7 +77,10 @@ public class Book implements Serializable {
 			return false;
 		return true;
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "Book [id=" + id + ", title=" + title + ", author=" + author + "]";
+	}
 
 }
