@@ -48,4 +48,14 @@ public class SQLBookDAOTest {
 		expectedBook = new Book(2, "ttyy", "yytt");
 		new SQLBookDAO().update(expectedBook);
 	}
+	
+	@Test
+	public void testAdd() throws DAOException {
+		Book expectedBook = new Book(4, "pppp", "4444");
+
+		new SQLBookDAO().add(new Book("pppp", "4444"));
+		Book actualBook = new SQLBookDAO().getById(4);
+		assertEquals(actualBook, expectedBook);
+				
+	}
 }

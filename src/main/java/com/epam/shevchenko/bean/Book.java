@@ -13,6 +13,12 @@ public class Book implements Serializable {
 		super();
 	}
 
+	public Book(String title, String author) {
+		super();
+		this.title = title;
+		this.author = author;
+	}
+
 	public Book(long id, String title, String author) {
 		super();
 		this.id = id;

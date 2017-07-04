@@ -14,6 +14,7 @@ public class SQLBookDAO extends SQLBaseDAO<Book> implements BookDAO {
 
 	private static final String SELECT_ALL_SQL = "SELECT * FROM library.books";
 	private static final String UPDATE_BOOK_SQL = "UPDATE library.books SET title=?, author=? WHERE id=?";
+	private static final String ADD_BOOK_SQL = "INSERT INTO library.books (title, author) VALUES (?, ?)";
 
 	@Override
 	protected String getSelectQuery() {
@@ -26,9 +27,14 @@ public class SQLBookDAO extends SQLBaseDAO<Book> implements BookDAO {
 	}
 
 	@Override
+	protected String getAddQuery() {
+		return ADD_BOOK_SQL;
+	}
+
+	@Override
 	protected List<Book> parseResultSet(ResultSet rs) throws SQLException {
 		List<Book> result = new ArrayList<Book>();
-		Book book ;
+		Book book;
 		while (rs.next()) {
 			book = new Book();
 			book.setId(rs.getInt(TableMapping.COLUMN_NAME_BOOK_ID));
@@ -44,7 +50,9 @@ public class SQLBookDAO extends SQLBaseDAO<Book> implements BookDAO {
 		if (prStatement != null) {
 			prStatement.setString(1, book.getTitle());
 			prStatement.setString(2, book.getAuthor());
-			prStatement.setLong(3, book.getId());
+			if (book.getId() != 0){
+				prStatement.setLong(3, book.getId());
+			}
 		}
 		return prStatement;
 	}

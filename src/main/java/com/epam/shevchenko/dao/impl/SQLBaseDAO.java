@@ -17,7 +17,7 @@ public abstract class SQLBaseDAO<T> implements BaseDAO<T> {
 	protected abstract String getSelectQuery();
 
 	protected abstract String getUpdateQuery();
-
+	protected abstract String getAddQuery();
 	protected abstract PreparedStatement updateStatement(PreparedStatement prStatement, T t)  throws SQLException ;
 
 	protected abstract List<T> parseResultSet(ResultSet rs) throws SQLException;
@@ -75,20 +75,37 @@ public abstract class SQLBaseDAO<T> implements BaseDAO<T> {
 			throw new DAOException("Error while updating");
 		}
 	}
+	
+	public void add(T t) throws DAOException {
+		Connection con = ConnectionManager.getInstance().getConnection();
+		String sql = getAddQuery();
+		int isUpdated = -1;
+		try {
+			PreparedStatement prStatement = con.prepareStatement(sql);
+			prStatement = updateStatement(prStatement, t);
+			prStatement.executeUpdate();
+			isUpdated = prStatement.getUpdateCount();
+		} catch (SQLException e) {
+			throw new DAOException("Error while adding", e);
+		}
+		if (isUpdated == -1) {
+			throw new DAOException("Error while adding");
+		}
+
+	}
+	
+	public void delete(int id) throws DAOException {
+		// TODO Auto-generated method stub
+
+	}
 
 	public void delete(T t) throws DAOException {
 		// TODO Auto-generated method stub
 
 	}
 
-	public void delete(int id) throws DAOException {
-		// TODO Auto-generated method stub
+	
 
-	}
-
-	public void add(T t) throws DAOException {
-		// TODO Auto-generated method stub
-
-	}
+	
 
 }
