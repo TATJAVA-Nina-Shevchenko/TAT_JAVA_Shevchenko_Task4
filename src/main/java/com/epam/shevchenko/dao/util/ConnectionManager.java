@@ -13,7 +13,7 @@ public class ConnectionManager {
 	private static ConnectionManager connectionManager;
 	private Connection connection;
 
-	private final static ResourceBundle rb = ResourceBundle.getBundle("com/epam/shevchenko/dao/db");
+	private final static ResourceBundle rb = ResourceBundle.getBundle("resources/db");
 
 	private String driver;
 	private String url;

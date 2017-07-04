@@ -4,4 +4,7 @@ import com.epam.shevchenko.bean.Book;
 
 public interface BookDAO extends BaseDAO<Book>{
 
+	
+	
+	
 }

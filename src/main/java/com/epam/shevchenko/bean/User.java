@@ -5,7 +5,7 @@ import java.io.Serializable;
 
 import com.epam.shevchenko.enums.UserRole;
 
-public class User implements Serializable {
+public class User  implements  Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -14,6 +14,5 @@ public class User implements Serializable {
 	private String contactData;
 	private UserRole role;
 	
-	
-	
+
 }

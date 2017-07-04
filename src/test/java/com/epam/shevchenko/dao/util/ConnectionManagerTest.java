@@ -14,7 +14,7 @@ public class ConnectionManagerTest {
 //  }
 
   @Test //(expectedExceptions = DAOException.class)
-  public void createConnection() throws DAOException {
+  public void testCreateConnection() throws DAOException {
    	  assertNotNull( ConnectionManager.getInstance().getConnection());
   }
 
