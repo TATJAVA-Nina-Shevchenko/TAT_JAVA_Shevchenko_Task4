@@ -45,14 +45,14 @@ public class Login extends BaseCommand {
 	private String createNegativeResponse(User user) {
 		String response;
 		response = "error log";
-		// TODO Auto-generated method stub
+		// TODO formatted response 
 		return response;
 	}
 
 	private String createPositiveResponse(User user, String sessionId) {
 		String response;
-		// TODO create response
-		response = "successfully logged"; // заглушка
+		// TODO formatted response 
+		response = "successfully logged"; 
 		return response;
 	}
 

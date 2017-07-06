@@ -19,8 +19,9 @@ public class FrontControllerTest {
 		return new Object[][] {
 //			new Object[] { "sessionId = 1111; command = add_book", "added book" },
 //				new Object[] { "sessionId = 1111; command = bla_bla_bla", "wrong request" },
-				new Object[] { "command = login; login=Nina; password=11111", "successfully logged" },
-				new Object[] { "command = login;", "error log" },
+//				new Object[] { "command = login; login=Nina; password=11111", "successfully logged" },
+//				new Object[] { "command = login;", "error log" },
+				new Object[] { "command = registration; login=Kiki;  password=11111", "user created" },
 
 		};
 	}

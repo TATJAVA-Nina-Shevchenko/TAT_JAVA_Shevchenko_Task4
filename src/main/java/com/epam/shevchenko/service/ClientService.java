@@ -9,4 +9,6 @@ public interface ClientService {
 
 	User login(Map<String, String> requestParams) throws ServiceException;
 
+	User register(Map<String, String> requestParams) throws ServiceException;
+
 }

@@ -13,34 +13,41 @@ import com.epam.shevchenko.dao.util.ConnectionManager;
 import com.epam.shevchenko.enums.TableMapping;
 import com.epam.shevchenko.enums.UserStatus;
 
+public class SQLUserDAO extends SQLBaseDAO<User> implements UserDAO {
 
-public class SQLUserDAO extends SQLBaseDAO<User> implements UserDAO{
-	
 	private static final String SELECT_ALL_SQL = "SELECT * FROM library.users LEFT JOIN library.user_status ON library.users.user_status_id = library.user_status.id";
 	private static final String WHERE_CLAUSE_BY_LOGIN_AND_PASS_SQL = " WHERE login=? AND password=?";
-	
+	private static final String UPDATE_USER_SQL = "UPDATE library.users SET contact_data=?, user_status_id=? WHERE id=?";
+	private static final String ADD_USER_SQL = "INSERT INTO library.users (login, password, contact_data) VALUES (?, ?, ?)";
+
 	@Override
 	protected String getSelectQuery() {
-		// TODO Auto-generated method stub
-		return null;
+		return SELECT_ALL_SQL;
 	}
 
 	@Override
 	protected String getUpdateQuery() {
-		// TODO Auto-generated method stub
-		return null;
+		return UPDATE_USER_SQL;
 	}
 
 	@Override
 	protected String getAddQuery() {
-		// TODO Auto-generated method stub
-		return null;
+		return ADD_USER_SQL;
 	}
 
 	@Override
-	protected PreparedStatement updateStatement(PreparedStatement prStatement, User t) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+	protected PreparedStatement updateStatement(PreparedStatement prStatement, User user) throws SQLException {
+		if (prStatement != null && user != null) {
+			prStatement.setString(1, user.getLogin());
+			prStatement.setString(2, user.getPassword());
+			if (user.getTelephone() != null) {
+				prStatement.setString(3, user.getTelephone());
+			} else {
+				prStatement.setString(3, "");
+			}
+		}
+
+		return prStatement;
 	}
 
 	@Override
@@ -48,34 +55,34 @@ public class SQLUserDAO extends SQLBaseDAO<User> implements UserDAO{
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
-	
-	public User getUser(String login,String password) throws DAOException{
-		User user= null;
+
+	public User getUser(String login, String password) throws DAOException {
+		User user = null;
 		Connection con = ConnectionManager.getInstance().getConnection();
-		String sql = SELECT_ALL_SQL + WHERE_CLAUSE_BY_LOGIN_AND_PASS_SQL ;
+		String sql = SELECT_ALL_SQL + WHERE_CLAUSE_BY_LOGIN_AND_PASS_SQL;
 		try {
 			PreparedStatement prStatement = con.prepareStatement(sql);
 			prStatement.setString(1, login);
 			prStatement.setString(2, password);
 			ResultSet rs = prStatement.executeQuery();
-			rs.next();	
-			user = initUser(rs);
+			if (rs.next()) {
+				user = initUser(rs);
+			}
 		} catch (SQLException e) {
 			throw new DAOException("Error while showing all", e);
 		}
-	
+
 		return user;
 	}
 
 	private User initUser(ResultSet rs) throws SQLException {
-		User user = new User ();
+		User user = new User();
 		user.setId(rs.getInt(TableMapping.COLUMN_NAME_USER_ID));
 		user.setLogin(rs.getString(TableMapping.COLUMN_NAME_USER_LOGIN));
 		user.setPassword(rs.getString(TableMapping.COLUMN_NAME_USER_PASSWORD));
 		user.setTelephone(rs.getString(TableMapping.COLUMN_NAME_USER_TELEPHONE));
 		user.setUserStatus(UserStatus.valueOf(rs.getString(TableMapping.COLUMN_NAME_USER_STATUS_STATUS).toUpperCase()));
-		
+
 		return user;
 	}
 

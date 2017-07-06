@@ -117,4 +117,13 @@ public class User implements Serializable {
 		this.userStatus = userStatus;
 	}
 
+	public User(String login, String password, String telephone) {
+		super();
+		this.login = login;
+		this.password = password;
+		this.telephone = telephone;
+	}
+
+	
+
 }

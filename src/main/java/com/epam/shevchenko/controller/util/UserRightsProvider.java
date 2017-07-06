@@ -18,6 +18,8 @@ public class UserRightsProvider {
 		commonCommandList.add(CommandName.SHOW_ALL_BOOKS);
 		commonCommandList.add(CommandName.WRONG_REQUEST);
 		commonCommandList.add(CommandName.LOGIN);
+		commonCommandList.add(CommandName.REGISTRATION);
+		
 //TODO add functionality
 		
 		//user rights
