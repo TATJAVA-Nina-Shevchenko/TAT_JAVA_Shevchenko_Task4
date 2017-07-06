@@ -8,11 +8,12 @@ import java.util.List;
 
 import com.epam.shevchenko.bean.Book;
 import com.epam.shevchenko.dao.BookDAO;
+import com.epam.shevchenko.enums.BookStatus;
 import com.epam.shevchenko.enums.TableMapping;
 
 public class SQLBookDAO extends SQLBaseDAO<Book> implements BookDAO {
 
-	private static final String SELECT_ALL_SQL = "SELECT * FROM library.books";
+	private static final String SELECT_ALL_SQL = "SELECT * FROM library.books WHERE book_status = available";
 	private static final String UPDATE_BOOK_SQL = "UPDATE library.books SET title=?, author=? WHERE id=?";
 	private static final String ADD_BOOK_SQL = "INSERT INTO library.books (title, author) VALUES (?, ?)";
 
@@ -37,9 +38,12 @@ public class SQLBookDAO extends SQLBaseDAO<Book> implements BookDAO {
 		Book book;
 		while (rs.next()) {
 			book = new Book();
+			
 			book.setId(rs.getInt(TableMapping.COLUMN_NAME_BOOK_ID));
 			book.setTitle(rs.getString(TableMapping.COLUMN_NAME_BOOK_TITLE));
 			book.setAuthor(rs.getString(TableMapping.COLUMN_NAME_BOOK_AUTHOR));
+			book.setBookStatus(BookStatus.valueOf(rs.getString(TableMapping.COLUMN_NAME_BOOK_STATUS)));
+			
 			result.add(book);
 		}
 		return result;

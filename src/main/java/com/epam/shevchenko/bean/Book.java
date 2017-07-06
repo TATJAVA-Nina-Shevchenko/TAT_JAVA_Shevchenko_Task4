@@ -2,12 +2,15 @@ package com.epam.shevchenko.bean;
 
 import java.io.Serializable;
 
+import com.epam.shevchenko.enums.BookStatus;
+
 public class Book implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private long id;
 	private String title;
 	private String author;
+	private BookStatus bookStatus;
 
 	public Book() {
 		super();
@@ -50,11 +53,20 @@ public class Book implements Serializable {
 		this.author = author;
 	}
 
+	public BookStatus getBookStatus() {
+		return bookStatus;
+	}
+
+	public void setBookStatus(BookStatus bookStatus) {
+		this.bookStatus = bookStatus;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((author == null) ? 0 : author.hashCode());
+		result = prime * result + ((bookStatus == null) ? 0 : bookStatus.hashCode());
 		result = prime * result + (int) (id ^ (id >>> 32));
 		result = prime * result + ((title == null) ? 0 : title.hashCode());
 		return result;
@@ -74,6 +86,8 @@ public class Book implements Serializable {
 				return false;
 		} else if (!author.equals(other.author))
 			return false;
+		if (bookStatus != other.bookStatus)
+			return false;
 		if (id != other.id)
 			return false;
 		if (title == null) {
@@ -86,7 +100,9 @@ public class Book implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Book [id=" + id + ", title=" + title + ", author=" + author + "]";
+		return "Book [id=" + id + ", title=" + title + ", author=" + author + ", bookStatus=" + bookStatus + "]";
 	}
+
+	
 
 }
