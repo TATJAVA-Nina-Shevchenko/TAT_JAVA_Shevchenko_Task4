@@ -9,6 +9,7 @@ import com.epam.shevchenko.controller.command.CommandName;
 import com.epam.shevchenko.controller.command.admin.AddBook;
 import com.epam.shevchenko.controller.command.common.Login;
 import com.epam.shevchenko.controller.command.common.NotEnoughRights;
+import com.epam.shevchenko.controller.command.common.Registration;
 import com.epam.shevchenko.controller.command.common.WrongRequest;
 import com.epam.shevchenko.controller.util.UserRightsProvider;
 import com.epam.shevchenko.enums.UserStatus;
@@ -17,10 +18,12 @@ public class CommandProvider {
 	private final Map<CommandName, Command> repository = new HashMap<CommandName, Command>();
 	private final Map<UserStatus, Set<CommandName>> userRights = UserRightsProvider.getRights();
 
+	
+	// registers all commands in command provider
 	CommandProvider() {
 		repository.put(CommandName.ADD_BOOK, new AddBook());
 		repository.put(CommandName.LOGIN, new Login());
-
+		repository.put(CommandName.REGISTRATION, new Registration());
 		
 		repository.put(CommandName.WRONG_REQUEST, new WrongRequest());
 		repository.put(CommandName.NOT_ENOUGH_RIGHTS, new NotEnoughRights());
@@ -32,6 +35,7 @@ public class CommandProvider {
 		return command;
 	}
 	
+	//provides appropriate command if user has enough rights or return default command
 	public Command getCommand(String name, UserStatus userStatus) {
 		Command command = null;
 		if(isRightsEnough(name, userStatus)){
