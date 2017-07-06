@@ -60,7 +60,7 @@ public class ClientServiceImpl implements ClientService {
 	}
 
 	@Override
-	public User register(Map<String, String> requestParams) throws ServiceException {
+	public boolean register(Map<String, String> requestParams) throws ServiceException {
 		String login = requestParams.get("login");
 		String password = requestParams.get("password");
 		String telephone = requestParams.get("telephone");
@@ -86,7 +86,7 @@ public class ClientServiceImpl implements ClientService {
 			throw new ServiceException();
 		}
 
-		return null;
+		return true;
 	}
 
 	private boolean isValidInput(String login, String password, String telephone) {
