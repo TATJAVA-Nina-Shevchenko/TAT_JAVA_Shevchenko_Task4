@@ -17,23 +17,25 @@ public class UserRightsProvider {
 		Set<CommandName> commonCommandList = new HashSet<CommandName>();
 		commonCommandList.add(CommandName.SHOW_ALL_BOOKS);
 		commonCommandList.add(CommandName.WRONG_REQUEST);
+		commonCommandList.add(CommandName.LOGIN);
+//TODO add functionality
 		
 		//user rights
 		Set<CommandName> userCommandList = new HashSet<CommandName>();
 		userCommandList.addAll(commonCommandList);
 		userCommandList.add(CommandName.ADD_BOOK);
-
+//TODO add functionality
 		
 		//admin rights
 		Set<CommandName> adminCommandList = new HashSet<CommandName>();
 		adminCommandList.addAll(commonCommandList);
-		
+//TODO add functionality		
 		
 		//super admin rights
 		Set<CommandName> superAdminCommandList = new HashSet<CommandName>();
 		superAdminCommandList.addAll(commonCommandList);
 		superAdminCommandList.addAll(adminCommandList);
-		
+//TODO add functionality	
 		
 		
 		userRights.put(UserStatus.COMMON, commonCommandList);

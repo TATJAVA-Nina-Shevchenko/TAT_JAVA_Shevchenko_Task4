@@ -7,6 +7,7 @@ import java.util.Set;
 import com.epam.shevchenko.controller.command.Command;
 import com.epam.shevchenko.controller.command.CommandName;
 import com.epam.shevchenko.controller.command.admin.AddBook;
+import com.epam.shevchenko.controller.command.common.Login;
 import com.epam.shevchenko.controller.command.common.NotEnoughRights;
 import com.epam.shevchenko.controller.command.common.WrongRequest;
 import com.epam.shevchenko.controller.util.UserRightsProvider;
@@ -18,6 +19,7 @@ public class CommandProvider {
 
 	CommandProvider() {
 		repository.put(CommandName.ADD_BOOK, new AddBook());
+		repository.put(CommandName.LOGIN, new Login());
 
 		
 		repository.put(CommandName.WRONG_REQUEST, new WrongRequest());

@@ -8,6 +8,15 @@ public class TableMapping {
 	public static final String COLUMN_NAME_BOOK_AUTHOR= "author" ;
 
 	//user table
+	public static final String COLUMN_NAME_USER_ID = "id";
+	public static final String COLUMN_NAME_USER_LOGIN = "login" ;
+	public static final String COLUMN_NAME_USER_PASSWORD= "password" ;
+	public static final String COLUMN_NAME_USER_TELEPHONE= "contact_data" ;
+	public static final String COLUMN_NAME_USER_STATUS= "user_status_id" ;
 	
+	
+	//user status column name
+	public static final String COLUMN_NAME_USER_STATUS_ID = "id";
+	public static final String COLUMN_NAME_USER_STATUS_STATUS= "status" ;
 
 }

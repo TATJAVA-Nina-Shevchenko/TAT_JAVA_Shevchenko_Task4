@@ -6,12 +6,13 @@ public enum CommandName {
 	WRONG_REQUEST,
 	SHOW_ALL_BOOKS,
 	NOT_ENOUGH_RIGHTS, 
+	 LOGIN, 
 	
 	//user commands
-	
+	 LOGOUT, 
 	
 	// admin commands
-	ADD_BOOK, 
+	ADD_BOOK,
 	
 	//super-admin commands
 	
