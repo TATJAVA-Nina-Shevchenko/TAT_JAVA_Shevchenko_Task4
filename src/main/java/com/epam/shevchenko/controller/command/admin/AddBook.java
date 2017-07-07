@@ -19,7 +19,7 @@ public class AddBook extends BaseCommand {
 		String author = requestParams.get(ReqRespMapping.BOOK_AUTHOR);
 				
 		BookService bookService = new BookServiceImpl();
-		Book book = new Book(title, author );
+		Book book = new Book(title, author);
 		boolean bookAddSucceed = false;
 		try {
 			bookAddSucceed = bookService.addBook(book);
