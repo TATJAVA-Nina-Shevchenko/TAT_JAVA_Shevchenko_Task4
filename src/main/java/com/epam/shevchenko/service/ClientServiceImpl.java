@@ -88,6 +88,8 @@ public class ClientServiceImpl implements ClientService {
 
 		return true;
 	}
+	
+	
 
 	private boolean isValidInput(String login, String password, String telephone) {
 		if ((login == null) || !isValidLogin(login)) {
