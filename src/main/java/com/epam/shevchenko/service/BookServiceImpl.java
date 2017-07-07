@@ -22,5 +22,16 @@ public class BookServiceImpl implements BookService {
 		return books;
 	}
 
+	@Override
+	public boolean addBook(Book book) throws ServiceException {
+		BookDAO bookDAO = new SQLBookDAO();
+		try {
+			bookDAO.add(book);
+		} catch (DAOException e) {
+			throw new ServiceException();
+		}
+		return false;
+	}
+
 	
 }

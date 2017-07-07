@@ -19,18 +19,20 @@ public class UserRightsProvider {
 		commonCommandList.add(CommandName.WRONG_REQUEST);
 		commonCommandList.add(CommandName.LOGIN);
 		commonCommandList.add(CommandName.REGISTRATION);
+		commonCommandList.add(CommandName.ADD_BOOK); //TODO delete after test
 		
 //TODO add functionality
 		
 		//user rights
 		Set<CommandName> userCommandList = new HashSet<CommandName>();
 		userCommandList.addAll(commonCommandList);
-		userCommandList.add(CommandName.ADD_BOOK);
+
 //TODO add functionality
 		
 		//admin rights
 		Set<CommandName> adminCommandList = new HashSet<CommandName>();
 		adminCommandList.addAll(commonCommandList);
+		adminCommandList.add(CommandName.ADD_BOOK);
 //TODO add functionality		
 		
 		//super admin rights
