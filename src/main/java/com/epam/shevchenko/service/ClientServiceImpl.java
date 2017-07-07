@@ -10,29 +10,18 @@ import com.epam.shevchenko.dao.exception.DAOException;
 import com.epam.shevchenko.dao.impl.SQLUserDAO;
 import com.epam.shevchenko.service.exception.NotValidInputServiceException;
 import com.epam.shevchenko.service.exception.ServiceException;
-import com.epam.shevchenko.service.exception.SuchUserDoesntExistsServiceException;
 import com.epam.shevchenko.service.exception.SuchUserExistsServiceException;
 
 public class ClientServiceImpl implements ClientService {
 
-	private static final String LOGIN_PATTERN = "^\\w{3,20}$"; // latin letters,
-																// digitals,
-																// under-scope
-																// from 3 till
-																// 20 symbols
-	private static final String PASSWORD_PATTERN = "^\\w{5,20}$"; // latin
-																	// letters,
-																	// digitals,
-																	// under-scope
-																	// from 5
-																	// till 20
-																	// symbols
-	private static final String TELEPHONE_PATTERN = "^\\+\\d{3}\\s\\d{2}\\s\\d{7}$"; // digitals
-																						// in
-																						// format
-																						// <+ddd
-																						// dd
-																						// ddddddd>
+	// latin letters, digitals, under-scope from 3 till 20 symbols
+	private static final String LOGIN_PATTERN = "^\\w{3,20}$";
+
+	// latin letters, digitals, under-scope from 5 till 20 symbols
+	private static final String PASSWORD_PATTERN = "^\\w{5,20}$";
+
+	// digitals in format <+ddd dd ddddddd>
+	private static final String TELEPHONE_PATTERN = "^\\+\\d{3}\\s\\d{2}\\s\\d{7}$";
 
 	public User login(String login, String password) throws ServiceException {
 
@@ -79,7 +68,7 @@ public class ClientServiceImpl implements ClientService {
 	}
 
 	@Override
-	public User getUser(int id) throws ServiceException {
+	public User getUser(long id) throws ServiceException {
 		UserDAO userDAO = new SQLUserDAO();
 		User existingUser = null;
 		try {
@@ -88,6 +77,43 @@ public class ClientServiceImpl implements ClientService {
 			throw new ServiceException("Error in services during get user bu id", e);
 		}
 		return existingUser;
+	}
+
+	@Override
+	public User updateUser(User user) throws ServiceException {
+
+		if (!isValidForEdit(user)) {
+			throw new NotValidInputServiceException();
+		}
+		
+		String newPassword = DataEncryptor.getPasswordHashCode(user.getPassword());
+		user.setPassword(newPassword);
+		UserDAO userDAO = new SQLUserDAO();
+		
+		try {
+			userDAO.updateProfile(user);;
+			user = userDAO.getById(user.getId());
+		} catch (DAOException e) {
+			// TODO Auto-generated catch block
+			throw new ServiceException();
+		}
+
+		return user;
+	}
+	
+	
+
+	private boolean isValidForEdit(User user) {
+		String newPassword = user.getPassword();
+		if ((newPassword != null) && (!isValidPassword(newPassword))) {
+			return false;
+		}
+
+		String newTelephone = user.getTelephone();
+		if ((newTelephone == null) || (!isValidTelephone(newTelephone))) {
+			return false;
+		}
+		return true;
 	}
 
 	private boolean isValidInput(String login, String password, String telephone) {

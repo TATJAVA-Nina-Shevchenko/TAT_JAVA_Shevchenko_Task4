@@ -9,7 +9,9 @@ public interface ClientService {
 
 	boolean register(String login,String password, String telephone) throws ServiceException;
 
-	User getUser(int id) throws ServiceException;
+	User getUser(long id) throws ServiceException;
+
+	User updateUser(User user) throws ServiceException;
 
 	
 }

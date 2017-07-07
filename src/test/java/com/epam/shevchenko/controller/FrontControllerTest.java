@@ -5,6 +5,7 @@ import static org.testng.Assert.assertEquals;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -17,25 +18,39 @@ public class FrontControllerTest {
 	@DataProvider
 	public Object[][] dp() {
 		return new Object[][] {
-//			new Object[] { "sessionId = 1111; command = add_book", "added book" },
-//				new Object[] { "sessionId = 1111; command = bla_bla_bla", "wrong request" },
-//				new Object[] { "command = login; user_login=Nina; user_password=11111", "successfully logged" },
-//				new Object[] { "command = login;", "error log" },
+				
+				new Object[] { "sessionId = user; command = bla_bla_bla", "wrong request" },
+				new Object[] { "command = login; user_login=Nina; user_password=11111", "successfully logged" },
+				new Object[] { "command = login;", "error log" },
 //				new Object[] { "command = registration; user_login=Kiki;  user_password=11111", "user created" },
-//				new Object[] { "command = add_book; book_title=First Book;  book_author = unknown", "book addded" },
+//				new Object[] { "sessionId = admin; command = add_book; book_title=First Book;  book_author = unknown", "Book has been successfully added" },
 //				new Object[] { "command = show_all_books", "" },
-				new Object[] { "command = show_user_profile; sessionId = 1111; user_id = 3", "user_id_0 = 3;user_login_0 = Maxim;user_contact_data_0 = +632;" },
+				new Object[] { "command = show_user_profile; sessionId = user; user_id = 4", "user_id_0 = 4;user_login_0 = hhh;user_telephone_0 = bnfg;" },
+				new Object[] { "command = update_profile; sessionId = user; user_id = 3; user_login=Maxim;  user_password=changedPass; user_telephone = +375 29 6667777", "user_id_0 = 3;user_login_0 = Maxim;user_telephone_0 = +375 29 6667777;" },
 				
 		};
 	}
 
-	@Test(dataProvider = "dp")
-	public void testExecuteTask(String request, String responseExpected) {
+	@BeforeTest
+	public void createArtificialSessions(){
 		Map<String, User> artificialSessions = new HashMap<String, User>();
+			
+		//user rights
 		User user = new User();
 		user.setUserStatus(UserStatus.USER);
-		artificialSessions.put("1111", user);
+		artificialSessions.put("user", user);
+		
+		//admin rights
+		user = new User();
+		user.setUserStatus(UserStatus.ADMIN);
+		artificialSessions.put("admin", user);
+		
 		FrontController.setOpenedSessions(artificialSessions);
+		
+	}
+	
+	@Test(dataProvider = "dp")
+	public void testExecuteTask(String request, String responseExpected) {
 		
 		FrontController controller = new FrontController();
 		String responseActual = controller.executeTask(request);

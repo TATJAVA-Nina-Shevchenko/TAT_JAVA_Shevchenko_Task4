@@ -12,7 +12,7 @@ public class ReqRespMapping {
 	public static final String USER_ID = "user_id";
 	public static final String USER_LOGIN = "user_login" ;
 	public static final String USER_PASSWORD= "user_password" ;
-	public static final String USER_TELEPHONE= "user_contact_data" ;
+	public static final String USER_TELEPHONE= "user_telephone" ;
 	public static final String USER_STATUS= "user_status_id" ;
 	
 	

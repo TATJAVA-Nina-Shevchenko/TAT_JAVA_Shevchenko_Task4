@@ -16,7 +16,7 @@ public interface BaseDAO<T> {
 	
 	List<T> showAll() throws DAOException;
 	
-	T getById(int id) throws DAOException;
+	T getById(long id) throws DAOException;
 	
 
 }

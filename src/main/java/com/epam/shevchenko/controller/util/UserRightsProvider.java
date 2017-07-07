@@ -10,45 +10,44 @@ import com.epam.shevchenko.enums.UserStatus;
 
 public class UserRightsProvider {
 
-	public static Map<UserStatus, Set<CommandName>> getRights(){
+	public static Map<UserStatus, Set<CommandName>> getRights() {
 		Map<UserStatus, Set<CommandName>> userRights = new HashMap<UserStatus, Set<CommandName>>();
-			
-		//common rights
+
+		// common rights
 		Set<CommandName> commonCommandList = new HashSet<CommandName>();
 		commonCommandList.add(CommandName.SHOW_ALL_BOOKS);
 		commonCommandList.add(CommandName.WRONG_REQUEST);
 		commonCommandList.add(CommandName.LOGIN);
 		commonCommandList.add(CommandName.REGISTRATION);
-		commonCommandList.add(CommandName.ADD_BOOK); //TODO delete after test
-		
-//TODO add functionality
-		
-		//user rights
+
+
+		// TODO add functionality
+
+		// user rights
 		Set<CommandName> userCommandList = new HashSet<CommandName>();
 		userCommandList.addAll(commonCommandList);
 		userCommandList.add(CommandName.SHOW_USER_PROFILE);
-		
+		userCommandList.add(CommandName.UPDATE_PROFILE);
 
-//TODO add functionality
-		
-		//admin rights
+		// TODO add functionality
+
+		// admin rights
 		Set<CommandName> adminCommandList = new HashSet<CommandName>();
 		adminCommandList.addAll(commonCommandList);
 		adminCommandList.add(CommandName.ADD_BOOK);
-//TODO add functionality		
-		
-		//super admin rights
+		// TODO add functionality
+
+		// super admin rights
 		Set<CommandName> superAdminCommandList = new HashSet<CommandName>();
 		superAdminCommandList.addAll(adminCommandList);
-		
-//TODO add functionality	
-		
-		
+
+		// TODO add functionality
+
 		userRights.put(UserStatus.COMMON, commonCommandList);
 		userRights.put(UserStatus.USER, userCommandList);
 		userRights.put(UserStatus.ADMIN, adminCommandList);
 		userRights.put(UserStatus.SUPER_ADMIN, superAdminCommandList);
-				
+
 		return userRights;
 	}
 

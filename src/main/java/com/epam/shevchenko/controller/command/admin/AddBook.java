@@ -30,22 +30,15 @@ public class AddBook extends BaseCommand {
 		
 		String response = "";
 		if (bookAddSucceed) {
-			response = createPositiveResponse();
+			String message = "Book has been successfully added";
+			response = createPositiveResponse(message);
 		} else {
-			response = createNegativeResponse();
+			String message = "Fail adding book";
+			response = createNegativeResponse(message);
 		}
 		return response;
 	}
 
-	private String createNegativeResponse() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	private String createPositiveResponse() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 
 	

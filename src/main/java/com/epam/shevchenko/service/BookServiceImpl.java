@@ -30,7 +30,7 @@ public class BookServiceImpl implements BookService {
 		} catch (DAOException e) {
 			throw new ServiceException();
 		}
-		return false;
+		return true;
 	}
 
 	

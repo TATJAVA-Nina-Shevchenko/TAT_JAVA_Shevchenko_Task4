@@ -7,5 +7,6 @@ public interface UserDAO extends BaseDAO<User> {
 
 	User getUser(String login,String password) throws DAOException;
 	
+	void updateProfile(User user) throws DAOException;
 	
 }

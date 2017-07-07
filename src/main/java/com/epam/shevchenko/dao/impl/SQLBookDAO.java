@@ -54,9 +54,9 @@ public class SQLBookDAO extends SQLBaseDAO<Book> implements BookDAO {
 		if (prStatement != null) {
 			prStatement.setString(1, book.getTitle());
 			prStatement.setString(2, book.getAuthor());
-//			if (book.getId() != 0){
-//				prStatement.setLong(3, book.getId());
-//			}
+			if (book.getId() != 0){
+				prStatement.setLong(3, book.getId());
+			}
 		}
 		return prStatement;
 	}

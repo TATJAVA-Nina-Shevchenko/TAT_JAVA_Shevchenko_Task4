@@ -1,52 +1,49 @@
-package com.epam.shevchenko.controller.command.common;
+package com.epam.shevchenko.controller.command.user;
 
 import java.util.Map;
 
+import com.epam.shevchenko.bean.User;
 import com.epam.shevchenko.controller.command.BaseCommand;
 import com.epam.shevchenko.enums.ReqRespMapping;
 import com.epam.shevchenko.service.ClientService;
 import com.epam.shevchenko.service.ClientServiceImpl;
 import com.epam.shevchenko.service.exception.ServiceException;
 
-public class Registration extends BaseCommand {
+public class UpdateProfile extends BaseCommand {
 
 	@Override
 	public String execute(Map<String, String> requestParams) {
+		
+		
+		int userId = Integer.parseInt(requestParams.get(ReqRespMapping.USER_ID)); //id is not available as input for user
 		String login = requestParams.get(ReqRespMapping.USER_LOGIN);
+		
+		//fields available for editing
 		String password = requestParams.get(ReqRespMapping.USER_PASSWORD);
 		String telephone = requestParams.get(ReqRespMapping.USER_TELEPHONE);
+
+		User user = new User();
+		user.setId(userId);
+		user.setLogin(login);;
+		user.setPassword(password);
+		user.setTelephone(telephone);
 		
 		ClientService clientService = new ClientServiceImpl();
-		boolean registrationSucceed = false;
 
 		try {
-			registrationSucceed = clientService.register(login, password, telephone);
+			user = clientService.updateUser(user);
 		} catch (ServiceException e) {
-			log.info("Problem during registration.");
+			log.info("Problem during updating profile.");
 		}
 
 		String response = "";
-		if (registrationSucceed) {
-			response = createPositiveResponse();
+		if (user != null) {
+			response = createPositiveResponse(user);
 		} else {
-			response = createNegativeResponse();
+			String message = "Fail updating profile";
+			response = createNegativeResponse(message);
 		}
-
-		return response;
-
-	}
-
-	protected String createPositiveResponse() {
-		String response;
-		response = "user created";
-		// TODO formatted response
 		return response;
 	}
 
-	protected String createNegativeResponse() {
-		String response;
-		response = "fail to create user";
-		// TODO formatted response
-		return response;
-	}
 }
