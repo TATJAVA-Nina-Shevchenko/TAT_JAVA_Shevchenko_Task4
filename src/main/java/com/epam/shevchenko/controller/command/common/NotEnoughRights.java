@@ -8,8 +8,8 @@ public class NotEnoughRights implements Command {
 
 	@Override
 	public String execute(Map<String, String> requestParams) {
-		// TODO Auto-generated method stub
-		return null;
+		String response = "Not enough rights for command";
+		return response;
 	}
 
 	

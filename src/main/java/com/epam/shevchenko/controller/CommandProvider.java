@@ -12,6 +12,7 @@ import com.epam.shevchenko.controller.command.common.NotEnoughRights;
 import com.epam.shevchenko.controller.command.common.Registration;
 import com.epam.shevchenko.controller.command.common.ShowAllBooks;
 import com.epam.shevchenko.controller.command.common.WrongRequest;
+import com.epam.shevchenko.controller.command.user.ShowUserProfile;
 import com.epam.shevchenko.controller.util.UserRightsProvider;
 import com.epam.shevchenko.enums.UserStatus;
 
@@ -26,6 +27,7 @@ public class CommandProvider {
 		repository.put(CommandName.LOGIN, new Login());
 		repository.put(CommandName.REGISTRATION, new Registration());
 		repository.put(CommandName.SHOW_ALL_BOOKS, new ShowAllBooks());
+		repository.put(CommandName.SHOW_USER_PROFILE, new ShowUserProfile());
 		
 		
 		repository.put(CommandName.WRONG_REQUEST, new WrongRequest());

@@ -23,7 +23,8 @@ public class FrontControllerTest {
 //				new Object[] { "command = login;", "error log" },
 //				new Object[] { "command = registration; user_login=Kiki;  user_password=11111", "user created" },
 //				new Object[] { "command = add_book; book_title=First Book;  book_author = unknown", "book addded" },
-				new Object[] { "command = show_all_books", "" },
+//				new Object[] { "command = show_all_books", "" },
+				new Object[] { "command = show_user_profile; sessionId = 1111; user_id = 3", "user_id_0 = 3;user_login_0 = Maxim;user_contact_data_0 = +632;" },
 				
 		};
 	}

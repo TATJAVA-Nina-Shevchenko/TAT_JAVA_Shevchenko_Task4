@@ -10,6 +10,7 @@ import com.epam.shevchenko.dao.exception.DAOException;
 import com.epam.shevchenko.dao.impl.SQLUserDAO;
 import com.epam.shevchenko.service.exception.NotValidInputServiceException;
 import com.epam.shevchenko.service.exception.ServiceException;
+import com.epam.shevchenko.service.exception.SuchUserDoesntExistsServiceException;
 import com.epam.shevchenko.service.exception.SuchUserExistsServiceException;
 
 public class ClientServiceImpl implements ClientService {
@@ -46,18 +47,17 @@ public class ClientServiceImpl implements ClientService {
 			// TODO Auto-generated catch block
 			throw new ServiceException();
 		}
-	
+
 		return user;
 	}
 
 	@Override
 	public boolean register(String login, String password, String telephone) throws ServiceException {
 
-
 		if (!isValidInput(login, password, telephone)) {
 			throw new NotValidInputServiceException();
 		}
-		
+
 		password = DataEncryptor.getPasswordHashCode(password);
 
 		UserDAO userDAO = new SQLUserDAO();
@@ -77,8 +77,18 @@ public class ClientServiceImpl implements ClientService {
 
 		return true;
 	}
-	
-	
+
+	@Override
+	public User getUser(int id) throws ServiceException {
+		UserDAO userDAO = new SQLUserDAO();
+		User existingUser = null;
+		try {
+			existingUser = userDAO.getById(id);
+		} catch (DAOException e) {
+			throw new ServiceException("Error in services during get user bu id", e);
+		}
+		return existingUser;
+	}
 
 	private boolean isValidInput(String login, String password, String telephone) {
 		if ((login == null) || !isValidLogin(login)) {
@@ -87,11 +97,11 @@ public class ClientServiceImpl implements ClientService {
 		if ((password == null) || !isValidPassword(password)) {
 			return false;
 		}
-		
+
 		if ((telephone != null) && !isValidTelephone(telephone)) {
 			return false;
 		}
-			
+
 		return true;
 	}
 

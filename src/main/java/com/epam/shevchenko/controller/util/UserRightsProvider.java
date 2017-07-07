@@ -26,6 +26,8 @@ public class UserRightsProvider {
 		//user rights
 		Set<CommandName> userCommandList = new HashSet<CommandName>();
 		userCommandList.addAll(commonCommandList);
+		userCommandList.add(CommandName.SHOW_USER_PROFILE);
+		
 
 //TODO add functionality
 		
@@ -37,8 +39,8 @@ public class UserRightsProvider {
 		
 		//super admin rights
 		Set<CommandName> superAdminCommandList = new HashSet<CommandName>();
-		superAdminCommandList.addAll(commonCommandList);
 		superAdminCommandList.addAll(adminCommandList);
+		
 //TODO add functionality	
 		
 		

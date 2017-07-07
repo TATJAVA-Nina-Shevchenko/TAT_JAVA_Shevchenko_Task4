@@ -4,18 +4,22 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
+import com.epam.shevchenko.bean.Book;
 import com.epam.shevchenko.bean.User;
 import com.epam.shevchenko.dao.UserDAO;
 import com.epam.shevchenko.dao.exception.DAOException;
 import com.epam.shevchenko.dao.util.ConnectionManager;
+import com.epam.shevchenko.enums.BookStatus;
 import com.epam.shevchenko.enums.TableMapping;
 import com.epam.shevchenko.enums.UserStatus;
 
 public class SQLUserDAO extends SQLBaseDAO<User> implements UserDAO {
 
-	private static final String SELECT_ALL_SQL = "SELECT * FROM library.users LEFT JOIN library.user_status ON library.users.user_status_id = library.user_status.id";
+	private static final String SELECT_ALL_SQL = "SELECT * FROM library.users";
+	private static final String SELECT_ALL_SQL_WITH_JOIN = "SELECT * FROM library.users LEFT JOIN library.user_status ON library.users.user_status_id = library.user_status.id";
 	private static final String WHERE_CLAUSE_BY_LOGIN_AND_PASS_SQL = " WHERE login=? AND password=?";
 	private static final String UPDATE_USER_SQL = "UPDATE library.users SET contact_data=?, user_status_id=? WHERE id=?";
 	private static final String ADD_USER_SQL = "INSERT INTO library.users (login, password, contact_data) VALUES (?, ?, ?)";
@@ -52,14 +56,24 @@ public class SQLUserDAO extends SQLBaseDAO<User> implements UserDAO {
 
 	@Override
 	protected List<User> parseResultSet(ResultSet rs) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		List<User> result = new ArrayList<User>();
+		User user;
+		while (rs.next()) {
+			user = new User();
+			
+			user.setId(rs.getInt(TableMapping.COLUMN_NAME_BOOK_ID));
+			user.setLogin(rs.getString(TableMapping.COLUMN_NAME_USER_LOGIN));
+			user.setTelephone(rs.getString(TableMapping.COLUMN_NAME_USER_TELEPHONE));
+						
+			result.add(user);
+		}
+		return result;
 	}
 
 	public User getUser(String login, String password) throws DAOException {
 		User user = null;
 		Connection con = ConnectionManager.getInstance().getConnection();
-		String sql = SELECT_ALL_SQL + WHERE_CLAUSE_BY_LOGIN_AND_PASS_SQL;
+		String sql = SELECT_ALL_SQL_WITH_JOIN + WHERE_CLAUSE_BY_LOGIN_AND_PASS_SQL;
 		try {
 			PreparedStatement prStatement = con.prepareStatement(sql);
 			prStatement.setString(1, login);
