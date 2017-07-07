@@ -1,6 +1,5 @@
 package com.epam.shevchenko.service;
 
-import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -34,19 +33,12 @@ public class ClientServiceImpl implements ClientService {
 																						// dd
 																						// ddddddd>
 
-	public User login(Map<String, String> requestParams) throws ServiceException {
-
-		String login = requestParams.get("login");
-		String password = requestParams.get("password");
-		if (password != null && !password.isEmpty()) {
-			password = DataEncryptor.getPasswordHashCode(password);
-		}
+	public User login(String login, String password) throws ServiceException {
 
 		User user = null;
 		UserDAO userDAO = new SQLUserDAO();
 		if ((login == null) || (password == null)) {
-			// TODO Auto-generated catch block
-			throw new ServiceException();
+			throw new NotValidInputServiceException();
 		}
 		try {
 			user = userDAO.getUser(login, password);
@@ -54,16 +46,13 @@ public class ClientServiceImpl implements ClientService {
 			// TODO Auto-generated catch block
 			throw new ServiceException();
 		}
-
-		// TODO Auto-generated method stub
+	
 		return user;
 	}
 
 	@Override
-	public boolean register(Map<String, String> requestParams) throws ServiceException {
-		String login = requestParams.get("login");
-		String password = requestParams.get("password");
-		String telephone = requestParams.get("telephone");
+	public boolean register(String login, String password, String telephone) throws ServiceException {
+
 
 		if (!isValidInput(login, password, telephone)) {
 			throw new NotValidInputServiceException();
@@ -88,6 +77,8 @@ public class ClientServiceImpl implements ClientService {
 
 		return true;
 	}
+	
+	
 
 	private boolean isValidInput(String login, String password, String telephone) {
 		if ((login == null) || !isValidLogin(login)) {

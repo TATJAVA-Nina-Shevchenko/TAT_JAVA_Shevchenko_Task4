@@ -10,6 +10,7 @@ import com.epam.shevchenko.controller.command.admin.AddBook;
 import com.epam.shevchenko.controller.command.common.Login;
 import com.epam.shevchenko.controller.command.common.NotEnoughRights;
 import com.epam.shevchenko.controller.command.common.Registration;
+import com.epam.shevchenko.controller.command.common.ShowAllBooks;
 import com.epam.shevchenko.controller.command.common.WrongRequest;
 import com.epam.shevchenko.controller.util.UserRightsProvider;
 import com.epam.shevchenko.enums.UserStatus;
@@ -24,6 +25,8 @@ public class CommandProvider {
 		repository.put(CommandName.ADD_BOOK, new AddBook());
 		repository.put(CommandName.LOGIN, new Login());
 		repository.put(CommandName.REGISTRATION, new Registration());
+		repository.put(CommandName.SHOW_ALL_BOOKS, new ShowAllBooks());
+		
 		
 		repository.put(CommandName.WRONG_REQUEST, new WrongRequest());
 		repository.put(CommandName.NOT_ENOUGH_RIGHTS, new NotEnoughRights());

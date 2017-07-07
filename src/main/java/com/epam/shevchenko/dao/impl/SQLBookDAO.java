@@ -13,7 +13,7 @@ import com.epam.shevchenko.enums.TableMapping;
 
 public class SQLBookDAO extends SQLBaseDAO<Book> implements BookDAO {
 
-	private static final String SELECT_ALL_SQL = "SELECT * FROM library.books WHERE book_status = available";
+	private static final String SELECT_ALL_SQL = "SELECT * FROM library.books WHERE book_status = 'available'";
 	private static final String UPDATE_BOOK_SQL = "UPDATE library.books SET title=?, author=? WHERE id=?";
 	private static final String ADD_BOOK_SQL = "INSERT INTO library.books (title, author) VALUES (?, ?)";
 
@@ -42,7 +42,7 @@ public class SQLBookDAO extends SQLBaseDAO<Book> implements BookDAO {
 			book.setId(rs.getInt(TableMapping.COLUMN_NAME_BOOK_ID));
 			book.setTitle(rs.getString(TableMapping.COLUMN_NAME_BOOK_TITLE));
 			book.setAuthor(rs.getString(TableMapping.COLUMN_NAME_BOOK_AUTHOR));
-			book.setBookStatus(BookStatus.valueOf(rs.getString(TableMapping.COLUMN_NAME_BOOK_STATUS)));
+			book.setBookStatus(BookStatus.valueOf(rs.getString(TableMapping.COLUMN_NAME_BOOK_STATUS).toUpperCase()));
 			
 			result.add(book);
 		}
@@ -54,9 +54,9 @@ public class SQLBookDAO extends SQLBaseDAO<Book> implements BookDAO {
 		if (prStatement != null) {
 			prStatement.setString(1, book.getTitle());
 			prStatement.setString(2, book.getAuthor());
-			if (book.getId() != 0){
-				prStatement.setLong(3, book.getId());
-			}
+//			if (book.getId() != 0){
+//				prStatement.setLong(3, book.getId());
+//			}
 		}
 		return prStatement;
 	}

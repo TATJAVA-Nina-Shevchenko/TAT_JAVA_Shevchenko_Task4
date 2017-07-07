@@ -5,7 +5,9 @@ import java.util.Map;
 import com.epam.shevchenko.bean.User;
 import com.epam.shevchenko.controller.FrontController;
 import com.epam.shevchenko.controller.command.BaseCommand;
+import com.epam.shevchenko.controller.util.DataEncryptor;
 import com.epam.shevchenko.controller.util.SessionIdentifierGenerator;
+import com.epam.shevchenko.enums.ReqRespMapping;
 import com.epam.shevchenko.service.ClientService;
 import com.epam.shevchenko.service.ClientServiceImpl;
 import com.epam.shevchenko.service.exception.ServiceException;
@@ -13,11 +15,17 @@ import com.epam.shevchenko.service.exception.ServiceException;
 public class Login extends BaseCommand {
 
 	public String execute(Map<String, String> requestParams) {
+		String login = requestParams.get(ReqRespMapping.USER_LOGIN);
+		String password = requestParams.get(ReqRespMapping.USER_PASSWORD);
+
+		if (password != null && !password.isEmpty()) {
+			password = DataEncryptor.getPasswordHashCode(password);
+		}
 
 		ClientService clientService = new ClientServiceImpl();
 		User user = null;
 		try {
-			user = clientService.login(requestParams);
+			user = clientService.login(login, password);
 		} catch (ServiceException e) {
 			log.info("Problem during login.");
 		}
