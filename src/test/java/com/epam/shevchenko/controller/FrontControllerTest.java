@@ -5,6 +5,7 @@ import static org.testng.Assert.assertEquals;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -20,6 +21,7 @@ public class FrontControllerTest {
 		return new Object[][] {
 				
 				new Object[] { "sessionId = user; command = bla_bla_bla", "wrong request" },
+				new Object[] { "sessionId = user;  command  = add_book; book_title=First Book;  book_author = unknown", "Not enough rights for command" },
 				new Object[] { "command = login; user_login=Nina; user_password=11111", "successfully logged" },
 				new Object[] { "command = login;", "error log" },
 //				new Object[] { "command = registration; user_login=Kiki;  user_password=11111", "user created" },
@@ -57,4 +59,6 @@ public class FrontControllerTest {
 	
 		assertEquals(responseActual, responseExpected);
 	}
+	
+	
 }
