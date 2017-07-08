@@ -1,13 +1,10 @@
 package com.epam.shevchenko.bean;
 
-import java.io.Serializable;
+import com.epam.shevchenko.constant.BookStatus;
 
-import com.epam.shevchenko.enums.BookStatus;
-
-public class Book implements Serializable {
+public class Book extends Entity {
 	private static final long serialVersionUID = 1L;
-
-	private long id;
+	
 	private String title;
 	private String author;
 	private BookStatus bookStatus;
@@ -29,14 +26,7 @@ public class Book implements Serializable {
 		this.author = author;
 	}
 
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
-
+	
 	public String getTitle() {
 		return title;
 	}

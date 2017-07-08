@@ -3,8 +3,8 @@ package com.epam.shevchenko.controller.command.user;
 import java.util.Map;
 
 import com.epam.shevchenko.bean.User;
+import com.epam.shevchenko.constant.ReqRespMapping;
 import com.epam.shevchenko.controller.command.BaseCommand;
-import com.epam.shevchenko.enums.ReqRespMapping;
 import com.epam.shevchenko.service.ClientService;
 import com.epam.shevchenko.service.ClientServiceImpl;
 import com.epam.shevchenko.service.exception.ServiceException;

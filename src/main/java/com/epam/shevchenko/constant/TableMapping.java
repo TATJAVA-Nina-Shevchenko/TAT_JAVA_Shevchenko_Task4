@@ -1,4 +1,4 @@
-package com.epam.shevchenko.enums;
+package com.epam.shevchenko.constant;
 
 public class TableMapping {
 	
@@ -6,7 +6,7 @@ public class TableMapping {
 	public static final String COLUMN_NAME_BOOK_ID = "id";
 	public static final String COLUMN_NAME_BOOK_TITLE = "title" ;
 	public static final String COLUMN_NAME_BOOK_AUTHOR= "author" ;
-	public static final String COLUMN_NAME_BOOK_STATUS = "book_status";
+	public static final String COLUMN_NAME_BOOK_STATUS = "book_status_id";
 
 	//user table
 	public static final String COLUMN_NAME_USER_ID = "id";
@@ -19,6 +19,11 @@ public class TableMapping {
 	//user status column name
 	public static final String COLUMN_NAME_USER_STATUS_ID = "id";
 	public static final String COLUMN_NAME_USER_STATUS_STATUS= "status" ;
+	
+	//book status column name
+	public static final String COLUMN_NAME_BOOK_STATUS_ID = "id";
+	public static final String COLUMN_NAME_BOOK_STATUS_STATUS= "status" ;
+
 	
 
 }

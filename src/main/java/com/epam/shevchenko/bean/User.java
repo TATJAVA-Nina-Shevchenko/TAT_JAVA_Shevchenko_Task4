@@ -1,26 +1,16 @@
 package com.epam.shevchenko.bean;
 
-import java.io.Serializable;
+import com.epam.shevchenko.constant.UserStatus;
 
-import com.epam.shevchenko.enums.UserStatus;
-
-public class User implements Serializable {
+public class User extends Entity{
 
 	private static final long serialVersionUID = 1L;
 
-	private long id;
 	private String login;
 	private String password;
 	private String telephone;
 	private UserStatus userStatus;
 
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
 
 	public String getLogin() {
 		return login;

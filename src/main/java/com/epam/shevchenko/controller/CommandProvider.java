@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+import com.epam.shevchenko.constant.UserStatus;
 import com.epam.shevchenko.controller.command.Command;
 import com.epam.shevchenko.controller.command.CommandName;
 import com.epam.shevchenko.controller.command.admin.AddBook;
@@ -15,7 +16,6 @@ import com.epam.shevchenko.controller.command.common.WrongRequest;
 import com.epam.shevchenko.controller.command.user.ShowUserProfile;
 import com.epam.shevchenko.controller.command.user.UpdateProfile;
 import com.epam.shevchenko.controller.util.UserRightsProvider;
-import com.epam.shevchenko.enums.UserStatus;
 
 public class CommandProvider {
 	private final Map<CommandName, Command> repository = new HashMap<CommandName, Command>();

@@ -5,13 +5,12 @@ import static org.testng.Assert.assertEquals;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import com.epam.shevchenko.bean.User;
-import com.epam.shevchenko.enums.UserStatus;
+import com.epam.shevchenko.constant.UserStatus;
 
 public class FrontControllerTest {
 
@@ -20,15 +19,15 @@ public class FrontControllerTest {
 	public Object[][] dp() {
 		return new Object[][] {
 				
-				new Object[] { "sessionId = user; command = bla_bla_bla", "wrong request" },
-				new Object[] { "sessionId = user;  command  = add_book; book_title=First Book;  book_author = unknown", "Not enough rights for command" },
-				new Object[] { "command = login; user_login=Nina; user_password=11111", "successfully logged" },
-				new Object[] { "command = login;", "error log" },
+//				new Object[] { "sessionId = user; command = bla_bla_bla", "wrong request" },
+//				new Object[] { "sessionId = user;  command  = add_book; book_title=First Book;  book_author = unknown", "Not enough rights for command" },
+//				new Object[] { "command = login; user_login=Nina; user_password=11111", "successfully logged" },
+//				new Object[] { "command = login;", "error log" },
 //				new Object[] { "command = registration; user_login=Kiki;  user_password=11111", "user created" },
 //				new Object[] { "sessionId = admin; command = add_book; book_title=First Book;  book_author = unknown", "Book has been successfully added" },
 //				new Object[] { "command = show_all_books", "" },
-				new Object[] { "command = show_user_profile; sessionId = user; user_id = 4", "user_id_0 = 4;user_login_0 = hhh;user_telephone_0 = bnfg;" },
-				new Object[] { "command = update_profile; sessionId = user; user_id = 3; user_login=Maxim;  user_password=changedPass; user_telephone = +375 29 6667777", "user_id_0 = 3;user_login_0 = Maxim;user_telephone_0 = +375 29 6667777;" },
+//				new Object[] { "command = show_user_profile; sessionId = user; user_id = 4", "user_id_0 = 4;user_login_0 = hhh;user_telephone_0 = bnfg;" },
+				new Object[] { "command = update_profile; sessionId = user; user_id = 3; user_login=Maxim;  user_password=changedPass2; user_telephone = +375 29 5557777", "user_id_0 = 3;user_login_0 = Maxim;user_telephone_0 = +375 29 5557777;" },
 				
 		};
 	}

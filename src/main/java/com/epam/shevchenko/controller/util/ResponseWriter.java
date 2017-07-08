@@ -5,7 +5,7 @@ import java.util.Map;
 
 import com.epam.shevchenko.bean.Book;
 import com.epam.shevchenko.bean.User;
-import com.epam.shevchenko.enums.ReqRespMapping;
+import com.epam.shevchenko.constant.ReqRespMapping;
 
 public class ResponseWriter {
 

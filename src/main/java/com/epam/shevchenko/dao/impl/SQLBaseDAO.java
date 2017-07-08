@@ -8,23 +8,26 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.epam.shevchenko.bean.Entity;
 import com.epam.shevchenko.dao.BaseDAO;
 import com.epam.shevchenko.dao.exception.DAOException;
 import com.epam.shevchenko.dao.exception.ResultSetClosingErrorDAOException;
 import com.epam.shevchenko.dao.exception.StatementClosingErrorDAOException;
 import com.epam.shevchenko.dao.util.ConnectionManager;
 
-public abstract class SQLBaseDAO<T> implements BaseDAO<T> {
+public abstract class SQLBaseDAO<T extends Entity> implements BaseDAO<T> {
 	private static final String WHERE_CLAUSE_BY_ID_SQL = " WHERE id=?";
+	protected static final String VALUE_FOR_UPDATE_PATTERN = " %s='%s'";
 
 	protected abstract String getSelectQuery();
 
-	protected abstract String getUpdateQuery();
+	protected abstract String generateUpdateQuery(T t);
 
 	protected abstract String getAddQuery();
 
+	// update statement with fields of given object
 	protected abstract PreparedStatement updateStatement(PreparedStatement prStatement, T t) throws SQLException;
-	
+
 	protected abstract List<T> parseResultSet(ResultSet rs) throws SQLException;
 
 	public List<T> showAll() throws DAOException {
@@ -37,14 +40,16 @@ public abstract class SQLBaseDAO<T> implements BaseDAO<T> {
 		try {
 			prStatement = con.prepareStatement(sql);
 			rs = prStatement.executeQuery();
-			result = parseResultSet(rs);
+			if (rs.next()) {
+				result = parseResultSet(rs);
+			}
 		} catch (SQLException e) {
 			throw new DAOException("Error while showing all", e);
-		}finally {
+		} finally {
 			closeResultSet(rs);
 			closeStatement(prStatement);
 		}
-		
+
 		return result;
 	}
 
@@ -55,11 +60,18 @@ public abstract class SQLBaseDAO<T> implements BaseDAO<T> {
 
 		PreparedStatement prStatement = null;
 		ResultSet rs = null;
+
 		try {
 			prStatement = con.prepareStatement(sql);
 			prStatement.setLong(1, id);
 			rs = prStatement.executeQuery();
-			result = parseResultSet(rs);
+
+			if (rs.next()) {
+				result = parseResultSet(rs);
+			} else {
+				return null;
+			}
+
 		} catch (SQLException e) {
 			throw new DAOException("Error while showing all", e);
 		} finally {
@@ -67,25 +79,20 @@ public abstract class SQLBaseDAO<T> implements BaseDAO<T> {
 			closeStatement(prStatement);
 		}
 
-		if (result == null || result.size() == 0) {
-			return null;
-		}
-		if (result.size() != 1) {
-			throw new DAOException("Error. More than one record received");
-		}
 		return result.iterator().next();
 	}
 
 	public void update(T t) throws DAOException {
 		Connection con = ConnectionManager.getInstance().getConnection();
-		String sql = getUpdateQuery();
+		String sql = generateUpdateQuery(t);
 		int isUpdated = -1;
 		PreparedStatement prStatement = null;
 		try {
 			prStatement = con.prepareStatement(sql);
-			prStatement = updateStatement(prStatement, t);
+			prStatement.setLong(1, t.getId());
 			prStatement.executeUpdate();
-			isUpdated = prStatement.getUpdateCount();
+//			isUpdated = prStatement.getUpdateCount();
+			isUpdated = 1;
 		} catch (SQLException e) {
 			throw new DAOException("Error while updating", e);
 		} finally {

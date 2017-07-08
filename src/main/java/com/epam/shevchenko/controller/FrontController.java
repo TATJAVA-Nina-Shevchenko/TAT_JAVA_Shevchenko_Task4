@@ -4,9 +4,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.epam.shevchenko.bean.User;
+import com.epam.shevchenko.constant.UserStatus;
 import com.epam.shevchenko.controller.command.Command;
 import com.epam.shevchenko.controller.util.RequestReader;
-import com.epam.shevchenko.enums.UserStatus;
 
 public class FrontController {
 	private final CommandProvider provider = new CommandProvider();

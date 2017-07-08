@@ -8,6 +8,7 @@ import java.util.List;
 import org.testng.annotations.Test;
 
 import com.epam.shevchenko.bean.Book;
+import com.epam.shevchenko.constant.BookStatus;
 import com.epam.shevchenko.dao.exception.DAOException;
 
 public class SQLBookDAOTest {
@@ -39,13 +40,15 @@ public class SQLBookDAOTest {
 
 	@Test
 	public void testUpdate() throws DAOException {
-		Book expectedBook = new Book(2, "iiii", "pppp");
+		Book expectedBook = new Book(1, "iiii", "pppp");
 
 		new SQLBookDAO().update(expectedBook);
-		Book actualBook = new SQLBookDAO().getById(2);
+		Book actualBook = new SQLBookDAO().getById(1);
+		expectedBook.setBookStatus(BookStatus.AVAILABLE);
 		assertEquals(actualBook, expectedBook);
 		
-		expectedBook = new Book(2, "ttyy", "yytt");
+		
+		expectedBook = new Book(1, "ttyy", "yytt");
 		new SQLBookDAO().update(expectedBook);
 	}
 	

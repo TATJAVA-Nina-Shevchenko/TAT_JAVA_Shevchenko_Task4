@@ -5,8 +5,8 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import com.epam.shevchenko.constant.UserStatus;
 import com.epam.shevchenko.controller.command.CommandName;
-import com.epam.shevchenko.enums.UserStatus;
 
 public class UserRightsProvider {
 

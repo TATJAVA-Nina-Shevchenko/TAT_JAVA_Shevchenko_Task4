@@ -91,7 +91,7 @@ public class ClientServiceImpl implements ClientService {
 		UserDAO userDAO = new SQLUserDAO();
 		
 		try {
-			userDAO.updateProfile(user);;
+			userDAO.update(user);;
 			user = userDAO.getById(user.getId());
 		} catch (DAOException e) {
 			// TODO Auto-generated catch block

@@ -1,4 +1,4 @@
-package com.epam.shevchenko.enums;
+package com.epam.shevchenko.constant;
 
 public class ReqRespMapping {
 	
