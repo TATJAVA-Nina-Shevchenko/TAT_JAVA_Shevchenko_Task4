@@ -13,5 +13,7 @@ public interface ClientService {
 
 	User updateUser(User user) throws ServiceException;
 
+	User changeUserStatus(User user) throws ServiceException;
+
 	
 }

@@ -93,6 +93,4 @@ public class Book extends Entity {
 		return "Book [id=" + id + ", title=" + title + ", author=" + author + ", bookStatus=" + bookStatus + "]";
 	}
 
-	
-
 }

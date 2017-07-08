@@ -9,9 +9,9 @@ public enum CommandName {
 	LOGOUT,  SHOW_USER_PROFILE,  UPDATE_PROFILE,
 
 	// admin commands
-	ADD_BOOK,
+	ADD_BOOK, SET_TO_ADMIN, SET_TO_BAN, UPDATE_BOOK, DELETE_BOOK,
 
 	// super-admin commands
-
+	SET_TO_USER
 	;
 }

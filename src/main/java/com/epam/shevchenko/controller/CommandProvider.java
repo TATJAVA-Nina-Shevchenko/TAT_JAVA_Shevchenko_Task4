@@ -8,6 +8,11 @@ import com.epam.shevchenko.constant.UserStatus;
 import com.epam.shevchenko.controller.command.Command;
 import com.epam.shevchenko.controller.command.CommandName;
 import com.epam.shevchenko.controller.command.admin.AddBook;
+import com.epam.shevchenko.controller.command.admin.DeleteBook;
+import com.epam.shevchenko.controller.command.admin.SetToAdmin;
+import com.epam.shevchenko.controller.command.admin.SetToBan;
+import com.epam.shevchenko.controller.command.admin.UpdateBook;
+import com.epam.shevchenko.controller.command.admin.supe.SetToUser;
 import com.epam.shevchenko.controller.command.common.Login;
 import com.epam.shevchenko.controller.command.common.NotEnoughRights;
 import com.epam.shevchenko.controller.command.common.Registration;
@@ -30,7 +35,11 @@ public class CommandProvider {
 		repository.put(CommandName.SHOW_ALL_BOOKS, new ShowAllBooks());
 		repository.put(CommandName.SHOW_USER_PROFILE, new ShowUserProfile());
 		repository.put(CommandName.UPDATE_PROFILE, new UpdateProfile());
-		
+		repository.put(CommandName.SET_TO_ADMIN, new SetToAdmin());
+		repository.put(CommandName.SET_TO_BAN, new SetToBan());
+		repository.put(CommandName.SET_TO_USER, new SetToUser());
+		repository.put(CommandName.UPDATE_BOOK, new UpdateBook());
+		repository.put(CommandName.DELETE_BOOK, new DeleteBook());
 		
 		
 		repository.put(CommandName.WRONG_REQUEST, new WrongRequest());

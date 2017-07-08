@@ -101,6 +101,21 @@ public class ClientServiceImpl implements ClientService {
 		return user;
 	}
 	
+	@Override
+	public User changeUserStatus(User user) throws ServiceException {
+
+		UserDAO userDAO = new SQLUserDAO();
+		
+		try {
+			userDAO.update(user);;
+			user = userDAO.getById(user.getId());
+		} catch (DAOException e) {
+			// TODO Auto-generated catch block
+			throw new ServiceException();
+		}
+
+		return user;
+	}
 	
 
 	private boolean isValidForEdit(User user) {

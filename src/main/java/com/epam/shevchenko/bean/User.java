@@ -10,7 +10,27 @@ public class User extends Entity{
 	private String password;
 	private String telephone;
 	private UserStatus userStatus;
+	
+	public User() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
+	public User(long id, String login, String password, String telephone, UserStatus userStatus) {
+		super();
+		this.id = id;
+		this.login = login;
+		this.password = password;
+		this.telephone = telephone;
+		this.userStatus = userStatus;
+	}
+
+	public User(String login, String password, String telephone) {
+		super();
+		this.login = login;
+		this.password = password;
+		this.telephone = telephone;
+	}
 
 	public String getLogin() {
 		return login;
@@ -92,29 +112,5 @@ public class User extends Entity{
 		return "User [id=" + id + ", login=" + login + ", password=" + password + ", telephone=" + telephone
 				+ ", userStatus=" + userStatus + "]";
 	}
-
-	public User() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	public User(long id, String login, String password, String telephone, UserStatus userStatus) {
-		super();
-		this.id = id;
-		this.login = login;
-		this.password = password;
-		this.telephone = telephone;
-		this.userStatus = userStatus;
-	}
-
-	public User(String login, String password, String telephone) {
-		super();
-		this.login = login;
-		this.password = password;
-		this.telephone = telephone;
-	}
-
-	
-	
 
 }

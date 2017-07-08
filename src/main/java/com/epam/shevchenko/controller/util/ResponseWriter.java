@@ -65,6 +65,10 @@ public class ResponseWriter {
 			arg = ReqRespMapping.USER_TELEPHONE + "_" + i;
 			value = user.getTelephone();
 			response += String.format(RESPONSE_PATTERN, arg, value);
+			
+			arg = ReqRespMapping.USER_STATUS + "_" + i;
+			value = user.getUserStatus().toString();
+			response += String.format(RESPONSE_PATTERN, arg, value);
 			i++;
 		}
 

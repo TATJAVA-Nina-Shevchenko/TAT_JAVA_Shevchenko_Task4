@@ -35,11 +35,18 @@ public class UserRightsProvider {
 		Set<CommandName> adminCommandList = new HashSet<CommandName>();
 		adminCommandList.addAll(commonCommandList);
 		adminCommandList.add(CommandName.ADD_BOOK);
+		adminCommandList.add(CommandName.SET_TO_ADMIN);
+		adminCommandList.add(CommandName.SET_TO_BAN);
+		adminCommandList.add(CommandName.UPDATE_BOOK);
+		adminCommandList.add(CommandName.DELETE_BOOK);
+		
+		
 		// TODO add functionality
 
 		// super admin rights
 		Set<CommandName> superAdminCommandList = new HashSet<CommandName>();
 		superAdminCommandList.addAll(adminCommandList);
+		superAdminCommandList.add(CommandName.SET_TO_USER);
 
 		// TODO add functionality
 
