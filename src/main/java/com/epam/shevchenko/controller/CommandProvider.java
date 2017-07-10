@@ -8,6 +8,7 @@ import com.epam.shevchenko.constant.UserStatus;
 import com.epam.shevchenko.controller.command.Command;
 import com.epam.shevchenko.controller.command.CommandName;
 import com.epam.shevchenko.controller.command.admin.AddBook;
+import com.epam.shevchenko.controller.command.admin.ConfirmOrder;
 import com.epam.shevchenko.controller.command.admin.DeleteBook;
 import com.epam.shevchenko.controller.command.admin.SetToAdmin;
 import com.epam.shevchenko.controller.command.admin.SetToBan;
@@ -44,6 +45,8 @@ public class CommandProvider {
 		repository.put(CommandName.DELETE_BOOK, new DeleteBook());
 		repository.put(CommandName.RESERVE_BOOKS, new ReserveBooks());
 		repository.put(CommandName.REFUSE_FROM_ORDER, new RefuseFromOrder());
+		repository.put(CommandName.CONFIRM_ORDER, new ConfirmOrder());
+		
 		
 		
 		

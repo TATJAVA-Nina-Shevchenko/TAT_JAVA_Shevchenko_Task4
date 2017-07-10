@@ -5,6 +5,8 @@ import static org.testng.Assert.assertEquals;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -35,10 +37,15 @@ public class FrontControllerTest {
 //				new Object[] { "command = refuse_from_book; sessionId = user; user_id = 1; book_id = 1", "Book was deleted from order" },
 //				new Object[] { "command = update_book; sessionId = admin; book_id = 2; book_title=First Book;  book_author = unknown", "book_id_0 = 2;book_title_0 = First Book;book_author_0 = unknown;" },
 //				new Object[] { "command = set_to_ban; sessionId = admin; user_id = 5", "user_id_0 = 5;user_login_0 = hhh;user_telephone_0 = ;user_status_id_0 = BANNED;" },
-				new Object[] { "command = delete_book; sessionId = admin; book_id = 3", "book_id_0 = 3;book_title_0 = hhhh;book_author_0 = hhhh;" },
+//				new Object[] { "command = delete_book; sessionId = admin; book_id = 3", "book_id_0 = 3;book_title_0 = hhhh;book_author_0 = hhhh;" },
+				new Object[] { "command = confirm_order; sessionId = admin; order_id = 8", "Order was successfully leased" },
 		};
 	}
 
+	@BeforeClass
+	//TODO generate new database
+	
+	
 	@BeforeTest
 	public void createArtificialSessions(){
 		Map<String, User> artificialSessions = new HashMap<String, User>();
@@ -69,6 +76,12 @@ public class FrontControllerTest {
 		String responseActual = controller.executeTask(request);
 	
 		assertEquals(responseActual, responseExpected);
+	}
+	
+	
+	@AfterClass
+	private void dropDb(){
+		//TODO drop database
 	}
 	
 	

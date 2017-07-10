@@ -42,6 +42,7 @@ public class UserRightsProvider {
 		adminCommandList.add(CommandName.SET_TO_BAN);
 		adminCommandList.add(CommandName.UPDATE_BOOK);
 		adminCommandList.add(CommandName.DELETE_BOOK);
+		adminCommandList.add(CommandName.CONFIRM_ORDER);
 		
 		
 		// TODO add functionality
