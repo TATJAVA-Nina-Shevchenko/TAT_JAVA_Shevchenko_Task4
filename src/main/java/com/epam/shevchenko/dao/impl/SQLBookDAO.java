@@ -20,9 +20,8 @@ public class SQLBookDAO extends SQLBaseDAO<Book> implements BookDAO {
 
 	//pattern for sql query to update book
 	private static final String UPDATE_BOOK_SQL_PATTERN = "UPDATE library.books SET %s WHERE id=?";
-
 	
-
+	
 	@Override
 	protected String getSelectQuery() {
 		return SELECT_ALL_SQL;

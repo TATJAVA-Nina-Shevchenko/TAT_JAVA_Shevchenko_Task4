@@ -2,7 +2,7 @@ package com.epam.shevchenko.constant;
 
 public enum BookStatus {
 
-	AVAILABLE(1), RESERVED(2), lEASED(3), DELETED(4),
+	AVAILABLE(1), RESERVED(2), LEASED(3), DELETED(4),
 
 	//
 	;
