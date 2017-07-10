@@ -13,4 +13,6 @@ public interface BookService {
 
 	Book updateBook(Book book) throws ServiceException;
 
+	Book changeBookStatus(Book book) throws ServiceException;
+
 }

@@ -34,7 +34,8 @@ public class FrontControllerTest {
 //				new Object[] { "command = refuse_from_order; sessionId = user; order_id = 2", "Order was successfully abandoned" },
 //				new Object[] { "command = refuse_from_book; sessionId = user; user_id = 1; book_id = 1", "Book was deleted from order" },
 //				new Object[] { "command = update_book; sessionId = admin; book_id = 2; book_title=First Book;  book_author = unknown", "book_id_0 = 2;book_title_0 = First Book;book_author_0 = unknown;" },
-				new Object[] { "command = set_to_ban; sessionId = admin; user_id = 5", "user_id_0 = 5;user_login_0 = hhh;user_telephone_0 = ;user_status_id_0 = BANNED;" },
+//				new Object[] { "command = set_to_ban; sessionId = admin; user_id = 5", "user_id_0 = 5;user_login_0 = hhh;user_telephone_0 = ;user_status_id_0 = BANNED;" },
+				new Object[] { "command = delete_book; sessionId = admin; book_id = 3", "book_id_0 = 3;book_title_0 = hhhh;book_author_0 = hhhh;" },
 		};
 	}
 

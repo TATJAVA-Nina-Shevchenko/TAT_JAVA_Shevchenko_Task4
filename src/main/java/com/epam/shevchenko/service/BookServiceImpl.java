@@ -48,5 +48,19 @@ public class BookServiceImpl implements BookService {
 		return book;
 	}
 
+	@Override
+	public Book changeBookStatus(Book book) throws ServiceException {
+			BookDAO bookDAO = new SQLBookDAO();
+		
+		try {
+			bookDAO.update(book);;
+			book = bookDAO.getById(book.getId());
+		} catch (DAOException e) {
+			throw new ServiceException("Error in service during change book status", e);
+		}
+
+		return book;
+	}
+
 	
 }

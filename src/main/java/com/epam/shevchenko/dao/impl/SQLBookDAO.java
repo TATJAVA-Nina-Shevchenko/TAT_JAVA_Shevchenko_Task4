@@ -84,7 +84,7 @@ public class SQLBookDAO extends SQLBaseDAO<Book> implements BookDAO {
 			if (!updatedValueSql.isEmpty()){
 				updatedValueSql += ",";
 			}
-			updatedValueSql +=String.format(VALUE_FOR_UPDATE_PATTERN, TableMapping.COLUMN_NAME_BOOK_STATUS, book.getBookStatus() );
+			updatedValueSql +=String.format(VALUE_FOR_UPDATE_PATTERN, TableMapping.COLUMN_NAME_BOOK_STATUS, book.getBookStatus().getBookStatusCode() );
 		}	
 		
 		if (updatedValueSql.isEmpty()){
