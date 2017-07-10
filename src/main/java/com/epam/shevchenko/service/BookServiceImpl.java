@@ -17,7 +17,7 @@ public class BookServiceImpl implements BookService {
 		try {
 			books = bookDAO.showAll();
 		} catch (DAOException e) {
-			throw new ServiceException();
+			throw new ServiceException("Error in service during show all books", e);
 		}
 		return books;
 	}
@@ -28,9 +28,24 @@ public class BookServiceImpl implements BookService {
 		try {
 			bookDAO.add(book);
 		} catch (DAOException e) {
-			throw new ServiceException();
+			throw new ServiceException("Error in service during add new book", e);
 		}
 		return true;
+	}
+
+	@Override
+	public Book updateBook(Book book) throws ServiceException {
+		
+		BookDAO bookDAO = new SQLBookDAO();
+		
+		try {
+			bookDAO.update(book);;
+			book = bookDAO.getById(book.getId());
+		} catch (DAOException e) {
+			throw new ServiceException("Error in service during updating book", e);
+		}
+
+		return book;
 	}
 
 	

@@ -13,8 +13,7 @@ public class UpdateProfile extends BaseCommand {
 
 	@Override
 	public String execute(Map<String, String> requestParams) {
-		
-		
+			
 		int userId = Integer.parseInt(requestParams.get(ReqRespMapping.USER_ID)); //id is not available as input for user
 		String login = requestParams.get(ReqRespMapping.USER_LOGIN);
 		

@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
+import com.epam.shevchenko.bean.Book;
 import com.epam.shevchenko.bean.User;
 import com.epam.shevchenko.controller.util.ResponseWriter;
 
@@ -18,6 +19,15 @@ public abstract class BaseCommand implements Command {
 		wrapedUser.add(user);
 
 		String response = ResponseWriter.writeUsersToResponse(wrapedUser);
+		return response;
+	}
+	
+	protected String createPositiveResponse(Book book) {
+		// wraps book into list to use common method
+		List<Book> wrapedBook = new ArrayList<Book>();
+		wrapedBook.add(book);
+
+		String response = ResponseWriter.writeBooksToResponse(wrapedBook);
 		return response;
 	}
 

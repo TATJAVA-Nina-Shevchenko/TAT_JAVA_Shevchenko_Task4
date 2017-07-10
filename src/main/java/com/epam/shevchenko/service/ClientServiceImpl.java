@@ -33,8 +33,7 @@ public class ClientServiceImpl implements ClientService {
 		try {
 			user = userDAO.getUser(login, password);
 		} catch (DAOException e) {
-			// TODO Auto-generated catch block
-			throw new ServiceException();
+			throw new ServiceException("Error in service during uset login", e);
 		}
 
 		return user;
@@ -60,8 +59,7 @@ public class ClientServiceImpl implements ClientService {
 			}
 			userDAO.add(user);
 		} catch (DAOException e) {
-			// TODO Auto-generated catch block
-			throw new ServiceException();
+			throw new ServiceException("Error in service during register new user", e);
 		}
 
 		return true;
@@ -94,8 +92,7 @@ public class ClientServiceImpl implements ClientService {
 			userDAO.update(user);;
 			user = userDAO.getById(user.getId());
 		} catch (DAOException e) {
-			// TODO Auto-generated catch block
-			throw new ServiceException();
+			throw new ServiceException("Error in service during updating user", e);
 		}
 
 		return user;
@@ -110,8 +107,7 @@ public class ClientServiceImpl implements ClientService {
 			userDAO.update(user);;
 			user = userDAO.getById(user.getId());
 		} catch (DAOException e) {
-			// TODO Auto-generated catch block
-			throw new ServiceException();
+			throw new ServiceException("Error in service during change user status", e);
 		}
 
 		return user;

@@ -11,4 +11,6 @@ public interface BookService {
 
 	boolean addBook(Book book) throws ServiceException;
 
+	Book updateBook(Book book) throws ServiceException;
+
 }
