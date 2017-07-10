@@ -28,6 +28,9 @@ public class UserRightsProvider {
 		userCommandList.addAll(commonCommandList);
 		userCommandList.add(CommandName.SHOW_USER_PROFILE);
 		userCommandList.add(CommandName.UPDATE_PROFILE);
+		userCommandList.add(CommandName.RESERVE_BOOKS);
+		userCommandList.add(CommandName.REFUSE_FROM_ORDER);
+		
 
 		// TODO add functionality
 

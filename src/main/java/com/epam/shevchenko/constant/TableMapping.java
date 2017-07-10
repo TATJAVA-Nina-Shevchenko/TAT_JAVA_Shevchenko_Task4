@@ -15,14 +15,27 @@ public class TableMapping {
 	public static final String COLUMN_NAME_USER_TELEPHONE= "contact_data" ;
 	public static final String COLUMN_NAME_USER_STATUS= "user_status_id" ;
 	
+	//history table
+	public static final String COLUMN_NAME_ORDER_ID = "id";
+	public static final String COLUMN_NAME_ORDER_USER = "user_id";
+	public static final String COLUMN_NAME_ORDER_STATUS = "order_status_id";
 	
-	//user status column name
+	//history_has_books table
+	public static final String COLUMN_NAME_ORDER_BOOKS_ID = "history_id";
+	public static final String COLUMN_NAME_ORDER_BOOKS_BOOK= "books_id";
+		
+	//user status table
 	public static final String COLUMN_NAME_USER_STATUS_ID = "id";
 	public static final String COLUMN_NAME_USER_STATUS_STATUS= "status" ;
 	
-	//book status column name
+	//book status table
 	public static final String COLUMN_NAME_BOOK_STATUS_ID = "id";
 	public static final String COLUMN_NAME_BOOK_STATUS_STATUS= "status" ;
+	
+	//order status table
+	public static final String COLUMN_NAME_ORDER_STATUS_ID = "id";
+	public static final String COLUMN_NAME_ORDER_STATUS_STATUS= "status" ;
+
 
 	
 

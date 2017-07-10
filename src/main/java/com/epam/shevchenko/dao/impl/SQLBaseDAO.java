@@ -91,7 +91,7 @@ public abstract class SQLBaseDAO<T extends Entity> implements BaseDAO<T> {
 			prStatement = con.prepareStatement(sql);
 			prStatement.setLong(1, t.getId());
 			prStatement.executeUpdate();
-//			isUpdated = prStatement.getUpdateCount();
+			// isUpdated = prStatement.getUpdateCount();
 			isUpdated = 1;
 		} catch (SQLException e) {
 			throw new DAOException("Error while updating", e);
@@ -153,6 +153,22 @@ public abstract class SQLBaseDAO<T extends Entity> implements BaseDAO<T> {
 			}
 		} catch (SQLException e) {
 			throw new StatementClosingErrorDAOException("SQL exception closing statement: " + e, e);
+		}
+	}
+
+	public void cancelTransaction(Connection con)throws DAOException{
+		try {
+			con.rollback();;
+		} catch (SQLException e) {
+			throw new  DAOException("SQL exception during rollback transaction " + e, e);
+		}
+	}
+	
+	public void closeTransaction(Connection con) throws DAOException {
+		try {
+			con.setAutoCommit(true);
+		} catch (SQLException e) {
+			throw new  DAOException("SQL exception setting autocommit true " + e, e);
 		}
 	}
 

@@ -18,6 +18,8 @@ import com.epam.shevchenko.controller.command.common.NotEnoughRights;
 import com.epam.shevchenko.controller.command.common.Registration;
 import com.epam.shevchenko.controller.command.common.ShowAllBooks;
 import com.epam.shevchenko.controller.command.common.WrongRequest;
+import com.epam.shevchenko.controller.command.user.RefuseFromOrder;
+import com.epam.shevchenko.controller.command.user.ReserveBooks;
 import com.epam.shevchenko.controller.command.user.ShowUserProfile;
 import com.epam.shevchenko.controller.command.user.UpdateProfile;
 import com.epam.shevchenko.controller.util.UserRightsProvider;
@@ -40,6 +42,9 @@ public class CommandProvider {
 		repository.put(CommandName.SET_TO_USER, new SetToUser());
 		repository.put(CommandName.UPDATE_BOOK, new UpdateBook());
 		repository.put(CommandName.DELETE_BOOK, new DeleteBook());
+		repository.put(CommandName.RESERVE_BOOKS, new ReserveBooks());
+		repository.put(CommandName.REFUSE_FROM_ORDER, new RefuseFromOrder());
+		
 		
 		
 		repository.put(CommandName.WRONG_REQUEST, new WrongRequest());
