@@ -24,7 +24,7 @@ public class SQLOrderDAO extends SQLBaseDAO<Order> implements OrderDAO {
 	private static final String ADDITIONAL_INSERT_SQL = "(?, ?)";
 
 	// pattern for sql query to update order
-	private static final String UPDATE_ORDER_SQL_PATTERN = "UPDATE library.orders SET %s WHERE id=?";
+	private static final String UPDATE_ORDER_SQL_PATTERN = "UPDATE library.history SET %s WHERE id=?";
 
 	@Override
 	protected String getSelectQuery() {
@@ -34,37 +34,6 @@ public class SQLOrderDAO extends SQLBaseDAO<Order> implements OrderDAO {
 	@Override
 	protected String getAddQuery() {
 		return ADD_ORDER_SQL;
-	}
-
-	@Override
-	protected List<Order> parseResultSet(ResultSet rs) throws SQLException {
-		List<Order> result = new ArrayList<Order>();
-		Order order;
-
-		do {
-			order = new Order();
-
-			order.setId(rs.getInt(TableMapping.COLUMN_NAME_ORDER_ID));
-
-			User lazyUser = new User();
-			lazyUser.setId(Long.parseLong(rs.getString(TableMapping.COLUMN_NAME_ORDER_USER)));
-			order.setUser(lazyUser);
-			result.add(order);
-		} while (rs.next());
-
-		return result;
-	}
-
-	@Override
-	protected PreparedStatement updateStatement(PreparedStatement prStatement, Order t) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	protected String generateUpdateQuery(Order t) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override
@@ -89,14 +58,11 @@ public class SQLOrderDAO extends SQLBaseDAO<Order> implements OrderDAO {
 			prStatement1.setInt(2, OrderStatus.RESERVED.getOrderStatusCode());
 			prStatement1.executeUpdate();
 			isUpdated = prStatement1.getUpdateCount();
-			
+
 			ResultSet rs = prStatement1.getGeneratedKeys();
 			if (rs.next()) {
 				int orderId = rs.getInt(1);
-//			}
-//
-//			if (isUpdated != -1) {
-				// second sql command
+
 				prStatement2 = con.prepareStatement(sql2);
 				for (int i = 0; i < booksId.size(); i++) {
 					prStatement2.setInt(2 * i + 1, orderId);
@@ -109,18 +75,24 @@ public class SQLOrderDAO extends SQLBaseDAO<Order> implements OrderDAO {
 				con.commit();
 			}
 		} catch (SQLException e) {
+			
 			cancelTransaction(con);
 			throw new DAOException("Error while reserving books", e);
+			
 		} finally {
 			closeStatement(prStatement1);
 			closeStatement(prStatement2);
 			closeTransaction(con);
-
 		}
 
 		if (isUpdated == -1) {
 			throw new DAOException("Error while adding");
 		}
+	}
+
+	@Override
+	public void refusedFromOrder(int userId, int orderId) throws DAOException {
+		// TODO
 
 	}
 
@@ -137,6 +109,55 @@ public class SQLOrderDAO extends SQLBaseDAO<Order> implements OrderDAO {
 		}
 		return sqlResult;
 
+	}
+
+	@Override
+	protected List<Order> parseResultSet(ResultSet rs) throws SQLException {
+		List<Order> result = new ArrayList<Order>();
+		Order order;
+
+		do {
+			order = new Order();
+
+			order.setId(rs.getInt(TableMapping.COLUMN_NAME_ORDER_ID));
+
+			User lazyUser = new User();
+			lazyUser.setId(Long.parseLong(rs.getString(TableMapping.COLUMN_NAME_ORDER_USER)));
+			order.setUser(lazyUser);
+			result.add(order);
+		} while (rs.next());
+
+		return result;
+	}
+
+	@Override
+	protected PreparedStatement updateStatement(PreparedStatement prStatement, Order order) throws SQLException {
+		if (prStatement != null && order != null) {
+
+			prStatement.setLong(1, order.getUser().getId());
+			prStatement.setInt(2, OrderStatus.RESERVED.getOrderStatusCode());
+
+		}
+
+		return prStatement;
+	}
+
+	@Override
+	protected String generateUpdateQuery(Order order) {
+		String resultQuery = "";
+		String updatedValueSql = "";
+
+		if (order.getOrderStatus() != null) {
+			updatedValueSql += String.format(VALUE_FOR_UPDATE_PATTERN, TableMapping.COLUMN_NAME_ORDER_STATUS,
+					order.getOrderStatus().getOrderStatusCode());
+		}
+
+		if (updatedValueSql.isEmpty()) {
+			return null;
+		}
+
+		resultQuery = String.format(UPDATE_ORDER_SQL_PATTERN, updatedValueSql);
+		return resultQuery;
 	}
 
 }

@@ -2,12 +2,15 @@ package com.epam.shevchenko.bean;
 
 import java.util.List;
 
+import com.epam.shevchenko.constant.OrderStatus;
+
 public class Order extends Entity {
 
 	private static final long serialVersionUID = 1L;
 	
 	private User user;
 	private List<Book> books;
+	private OrderStatus orderStatus;
 	
 	
 	public Order() {
@@ -17,6 +20,7 @@ public class Order extends Entity {
 	public User getUser() {
 		return user;
 	}
+	
 	public void setUser(User user) {
 		this.user = user;
 	}
@@ -27,12 +31,21 @@ public class Order extends Entity {
 		this.books = books;
 	}
 
+	public OrderStatus getOrderStatus() {
+		return orderStatus;
+	}
+
+	public void setOrderStatus(OrderStatus orderStatus) {
+		this.orderStatus = orderStatus;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((books == null) ? 0 : books.hashCode());
 		result = prime * result + (int) (id ^ (id >>> 32));
+		result = prime * result + ((orderStatus == null) ? 0 : orderStatus.hashCode());
 		result = prime * result + ((user == null) ? 0 : user.hashCode());
 		return result;
 	}
@@ -53,6 +66,8 @@ public class Order extends Entity {
 			return false;
 		if (id != other.id)
 			return false;
+		if (orderStatus != other.orderStatus)
+			return false;
 		if (user == null) {
 			if (other.user != null)
 				return false;
@@ -63,9 +78,9 @@ public class Order extends Entity {
 
 	@Override
 	public String toString() {
-		return "Order [id=" + id + ", user=" + user + ", books=" + books + "]";
+		return "Order [id=" + id + ", user=" + user + ", books=" + books + ", orderStatus=" + orderStatus + "]";
 	}
-	
-	
+
+
 
 }

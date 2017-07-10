@@ -8,7 +8,7 @@ public class ReqRespMapping {
 	public static final String BOOK_AUTHOR= "book_author" ;
 	public static final String BOOK_STATUS = "book_status";
 
-	//user table
+	//user fields
 	public static final String USER_ID = "user_id";
 	public static final String USER_LOGIN = "user_login" ;
 	public static final String USER_PASSWORD= "user_password" ;
@@ -19,6 +19,9 @@ public class ReqRespMapping {
 	//user status column name
 	public static final String USER_STATUS_ID = "user_status_id";
 	public static final String USER_STATUS_STATUS= "user_status" ;
+	
+	//order fields
+	public static final Object ORDER_ID = "order_id";
 	
 	
 	

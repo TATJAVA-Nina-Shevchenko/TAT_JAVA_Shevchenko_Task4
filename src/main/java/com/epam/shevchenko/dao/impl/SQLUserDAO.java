@@ -93,29 +93,6 @@ public class SQLUserDAO extends SQLBaseDAO<User> implements UserDAO {
 		return user;
 	}
 
-//	public void updateProfile(User user) throws DAOException {
-//		Connection con = ConnectionManager.getInstance().getConnection();
-//
-//		String sql = UPDATE_PROFILE_SQL;
-//		int isUpdated = -1;
-//		PreparedStatement prStatement = null;
-//		try {
-//			prStatement = con.prepareStatement(sql);
-//			prStatement.setString(1, user.getTelephone());
-//			prStatement.setLong(2, user.getId());
-//			prStatement.executeUpdate();
-//			isUpdated = prStatement.getUpdateCount();
-//		} catch (SQLException e) {
-//			throw new DAOException("Error while updating", e);
-//		} finally {
-//			closeStatement(prStatement);
-//		}
-//
-//		if (isUpdated == -1) {
-//			throw new DAOException("Error while updating");
-//		}
-//	}
-
 	private User initUser(ResultSet rs) throws SQLException {
 		User user = new User();
 		user.setId(rs.getInt(TableMapping.COLUMN_NAME_USER_ID));
