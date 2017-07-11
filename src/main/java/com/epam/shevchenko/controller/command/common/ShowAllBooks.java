@@ -19,7 +19,7 @@ public class ShowAllBooks extends BaseCommand{
 		try {
 			books = bookService.showAllBooks();
 		} catch (ServiceException e) {
-			log.info("Problem during show all books.");
+			log.error("Problem during show all books." + e);
 		}
 
 		String response = "";

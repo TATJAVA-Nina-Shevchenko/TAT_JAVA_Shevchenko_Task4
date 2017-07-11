@@ -26,7 +26,7 @@ public class DeleteBook extends BaseCommand{
 		try {
 			book = bookService.changeBookStatus(book);
 		} catch (ServiceException e) {
-			log.info("Problem during updating profile.");
+			log.error("Problem during updating profile." + e );
 		}
 
 		String response = "";

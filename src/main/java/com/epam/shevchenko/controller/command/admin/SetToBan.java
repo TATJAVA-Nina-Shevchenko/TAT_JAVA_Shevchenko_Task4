@@ -26,7 +26,7 @@ public class SetToBan extends BaseCommand{
 			try {
 				user = clientService.changeUserStatus(user);
 			} catch (ServiceException e) {
-				log.info("Problem during updating profile.");
+				log.error("Problem during updating profile." + e);
 			}
 
 			String response = "";

@@ -22,7 +22,7 @@ public class Registration extends BaseCommand {
 		try {
 			registrationSucceed = clientService.register(login, password, telephone);
 		} catch (ServiceException e) {
-			log.info("Problem during registration.");
+			log.error("Problem during registration." + e);
 		}
 
 		String response = "";

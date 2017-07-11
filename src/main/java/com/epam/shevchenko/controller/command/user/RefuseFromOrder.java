@@ -24,7 +24,7 @@ public class RefuseFromOrder extends BaseCommand {
 		try {
 			order = orderService.changeOrderStatus(order);
 		} catch (ServiceException e) {
-			log.info("Problem during refused order.");
+			log.error("Problem during refused order." + e);
 		}
 
 		String response = "";

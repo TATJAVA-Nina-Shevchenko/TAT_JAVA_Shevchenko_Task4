@@ -21,7 +21,7 @@ public class ShowUserProfile extends BaseCommand {
 		try {
 			user = clientService.getUser(userId);
 		} catch (ServiceException e) {
-			log.info("Problem during login.");
+			log.error("Problem during login." + e);
 		}
 
 		String response = "";

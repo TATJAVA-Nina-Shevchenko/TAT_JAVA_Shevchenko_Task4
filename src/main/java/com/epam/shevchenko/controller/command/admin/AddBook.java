@@ -12,7 +12,6 @@ import com.epam.shevchenko.service.exception.ServiceException;
 
 public class AddBook extends BaseCommand {
 
-
 	public String execute(Map<String, String> requestParams) {
 		
 		String title = requestParams.get(ReqRespMapping.BOOK_TITLE);
@@ -24,7 +23,7 @@ public class AddBook extends BaseCommand {
 		try {
 			bookAddSucceed = bookService.addBook(book);
 		} catch (ServiceException e) {
-			log.info("Problem during add book.");
+			log.error("Problem during add book." + e);
 		}
 
 		

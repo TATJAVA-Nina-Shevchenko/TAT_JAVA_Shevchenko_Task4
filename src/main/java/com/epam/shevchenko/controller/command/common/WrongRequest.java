@@ -9,7 +9,7 @@ public class WrongRequest implements Command {
 	@Override
 	public String execute(Map<String, String> requestParams) {
 		// TODO Auto-generated method stub
-		return "wrong request";
+		return "Wrong request";
 	}
 
 	

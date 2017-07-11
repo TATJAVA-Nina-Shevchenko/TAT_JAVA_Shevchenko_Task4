@@ -27,7 +27,7 @@ public class Login extends BaseCommand {
 		try {
 			user = clientService.login(login, password);
 		} catch (ServiceException e) {
-			log.info("Problem during login.");
+			log.error("Problem during login." + e);
 		}
 
 		String response = "";

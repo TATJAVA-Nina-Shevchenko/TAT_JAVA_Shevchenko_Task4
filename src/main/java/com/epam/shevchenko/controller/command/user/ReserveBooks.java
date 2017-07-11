@@ -28,7 +28,7 @@ public class ReserveBooks extends BaseCommand {
 		try {
 			bookAddSucceed = orderService.reserveBooks(userId, booksId);
 		} catch (ServiceException e) {
-			log.info("Problem during create order.");
+			log.error("Problem during create order." + e);
 		}
 
 		

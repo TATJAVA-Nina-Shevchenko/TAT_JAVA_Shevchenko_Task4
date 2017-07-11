@@ -31,7 +31,7 @@ public class UpdateBook extends BaseCommand{
 		try {
 			book = bookService.updateBook(book);
 		} catch (ServiceException e) {
-			log.info("Problem during updating profile.");
+			log.error("Problem during updating profile." + e);
 		}
 
 		String response = "";

@@ -32,7 +32,7 @@ public class UpdateProfile extends BaseCommand {
 		try {
 			user = clientService.updateUser(user);
 		} catch (ServiceException e) {
-			log.info("Problem during updating profile.");
+			log.error("Problem during updating profile." + e);
 		}
 
 		String response = "";

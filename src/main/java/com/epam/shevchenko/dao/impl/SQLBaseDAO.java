@@ -91,7 +91,6 @@ public abstract class SQLBaseDAO<T extends Entity> implements BaseDAO<T> {
 			prStatement = con.prepareStatement(sql);
 			prStatement.setLong(1, t.getId());
 			prStatement.executeUpdate();
-			// isUpdated = prStatement.getUpdateCount();
 			isUpdated = 1;
 		} catch (SQLException e) {
 			throw new DAOException("Error while updating", e);
@@ -123,16 +122,6 @@ public abstract class SQLBaseDAO<T extends Entity> implements BaseDAO<T> {
 		if (isUpdated == -1) {
 			throw new DAOException("Error while adding");
 		}
-
-	}
-
-	public void delete(int id) throws DAOException {
-		// TODO Auto-generated method stub
-
-	}
-
-	public void delete(T t) throws DAOException {
-		// TODO Auto-generated method stub
 
 	}
 
