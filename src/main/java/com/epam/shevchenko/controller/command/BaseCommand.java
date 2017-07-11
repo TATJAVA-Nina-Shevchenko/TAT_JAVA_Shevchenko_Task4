@@ -26,7 +26,7 @@ public abstract class BaseCommand implements Command {
 		String response = "";
 		response += ResponseWriter.writeToResponse(ReqRespMapping.SESSION_ID, sessionId);
 		response += createPositiveResponse(user);
-		response = "successfully logged";
+		response += ResponseWriter.writeToResponse(ReqRespMapping.SUCCESS_MESSAGE, "successfully logged");
 		return response;
 	}
 
