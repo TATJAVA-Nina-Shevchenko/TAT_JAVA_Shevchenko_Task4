@@ -2,14 +2,16 @@ package com.epam.shevchenko.controller.command.common;
 
 import java.util.Map;
 
-import com.epam.shevchenko.controller.command.Command;
+import com.epam.shevchenko.controller.command.BaseCommand;
 
-public class WrongRequest implements Command {
+public class WrongRequest extends BaseCommand {
 
 	@Override
 	public String execute(Map<String, String> requestParams) {
-		// TODO Auto-generated method stub
-		return "Wrong request";
+
+		String message = "Wrong request";
+		String response = createNegativeResponse(message);
+		return response;
 	}
 
 	

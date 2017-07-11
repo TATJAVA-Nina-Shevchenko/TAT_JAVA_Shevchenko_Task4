@@ -61,22 +61,19 @@ public class ConnectionManager {
 			Class.forName(driver);
 			connection = DriverManager.getConnection(url, dbLogin, dbPass);
 		} catch (ClassNotFoundException e) {
-			// TODO
-			throw new ConnectionFailDAOException("", e);
+			throw new ConnectionFailDAOException("Error getting driver", e);
 		} catch (SQLException e) {
-			// TODO
-			throw new ConnectionFailDAOException("", e);
+			throw new ConnectionFailDAOException("Fail to connect to database", e);
 		}
 		return connection;
 	}
 	
-	public void closeConnection(){
+	public void closeConnection() throws DAOException{
 		if(connection != null){
 			try {
 				connection.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				throw new DAOException("Fail to close connection", e);
 			}
 		}
 	}

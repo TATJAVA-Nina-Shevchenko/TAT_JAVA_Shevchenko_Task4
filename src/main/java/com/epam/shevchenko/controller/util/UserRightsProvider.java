@@ -21,7 +21,7 @@ public class UserRightsProvider {
 		commonCommandList.add(CommandName.REGISTRATION);
 
 
-		// TODO add functionality
+		// TODO add functionality here
 
 		// user rights
 		Set<CommandName> userCommandList = new HashSet<CommandName>();
@@ -32,7 +32,7 @@ public class UserRightsProvider {
 		userCommandList.add(CommandName.REFUSE_FROM_ORDER);
 		
 
-		// TODO add functionality
+		// TODO add functionality  here
 
 		// admin rights
 		Set<CommandName> adminCommandList = new HashSet<CommandName>();
@@ -45,14 +45,14 @@ public class UserRightsProvider {
 		adminCommandList.add(CommandName.CONFIRM_ORDER);
 		
 		
-		// TODO add functionality
+		// TODO add functionality  here
 
 		// super admin rights
 		Set<CommandName> superAdminCommandList = new HashSet<CommandName>();
 		superAdminCommandList.addAll(adminCommandList);
 		superAdminCommandList.add(CommandName.SET_TO_USER);
 
-		// TODO add functionality
+		// TODO add functionality  here
 
 		userRights.put(UserStatus.COMMON, commonCommandList);
 		userRights.put(UserStatus.USER, userCommandList);

@@ -2,7 +2,7 @@ package com.epam.shevchenko.bean;
 
 import com.epam.shevchenko.constant.UserStatus;
 
-public class User extends Entity{
+public class User extends Entity {
 
 	private static final long serialVersionUID = 1L;
 
@@ -10,10 +10,9 @@ public class User extends Entity{
 	private String password;
 	private String telephone;
 	private UserStatus userStatus;
-	
+
 	public User() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public User(long id, String login, String password, String telephone, UserStatus userStatus) {

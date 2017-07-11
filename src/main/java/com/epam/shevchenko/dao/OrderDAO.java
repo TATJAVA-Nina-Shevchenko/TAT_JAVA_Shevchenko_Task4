@@ -9,6 +9,5 @@ public interface OrderDAO extends BaseDAO<Order> {
 
 	void reserveBooks(int userId, List<Integer> booksId) throws DAOException;
 
-	void refusedFromOrder(int userId, int orderId) throws DAOException;
 
 }

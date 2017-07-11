@@ -2,13 +2,15 @@ package com.epam.shevchenko.controller.command.common;
 
 import java.util.Map;
 
-import com.epam.shevchenko.controller.command.Command;
+import com.epam.shevchenko.controller.command.BaseCommand;
 
-public class NotEnoughRights implements Command {
+public class NotEnoughRights extends BaseCommand{
 
 	@Override
 	public String execute(Map<String, String> requestParams) {
-		String response = "Not enough rights for command";
+		
+		String message = "Not enough rights for command";
+		String response = createNegativeResponse(message);
 		return response;
 	}
 

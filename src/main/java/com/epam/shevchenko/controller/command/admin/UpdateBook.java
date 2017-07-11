@@ -31,14 +31,14 @@ public class UpdateBook extends BaseCommand{
 		try {
 			book = bookService.updateBook(book);
 		} catch (ServiceException e) {
-			log.error("Problem during updating profile." + e);
+			log.error("Problem during updating book info." + e);
 		}
 
 		String response = "";
 		if (book != null) {
 			response = createPositiveResponse(book);
 		} else {
-			String message = "Fail updating profile";
+			String message = "Fail updating book info";
 			response = createNegativeResponse(message);
 		}
 		return response;

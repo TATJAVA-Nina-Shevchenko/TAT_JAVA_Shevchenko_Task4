@@ -25,28 +25,18 @@ public class Registration extends BaseCommand {
 			log.error("Problem during registration." + e);
 		}
 
+		
 		String response = "";
 		if (registrationSucceed) {
-			response = createPositiveResponse();
+			String message = "User was created";
+			response = createPositiveResponse(message);
 		} else {
-			response = createNegativeResponse();
+			String message ="Fail to create user";
+			response = createNegativeResponse(message);
 		}
 
 		return response;
 
 	}
-
-	protected String createPositiveResponse() {
-		String response;
-		response = "user created";
-		// TODO formatted response
-		return response;
-	}
-
-	protected String createNegativeResponse() {
-		String response;
-		response = "fail to create user";
-		// TODO formatted response
-		return response;
-	}
+	
 }

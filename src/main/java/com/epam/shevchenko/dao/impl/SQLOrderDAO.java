@@ -89,12 +89,7 @@ public class SQLOrderDAO extends SQLBaseDAO<Order> implements OrderDAO {
 		}
 	}
 
-	@Override
-	public void refusedFromOrder(int userId, int orderId) throws DAOException {
-		// TODO
-
-	}
-
+	
 	private String generateMultiAddSql(List<Integer> booksId) {
 		String sqlResult = ADD_BOOKS_IN_ORDER_SQL;
 		if (booksId == null) {
