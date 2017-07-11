@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.epam.shevchenko.bean.User;
+import com.epam.shevchenko.constant.ReqRespMapping;
 import com.epam.shevchenko.constant.UserStatus;
 import com.epam.shevchenko.controller.command.Command;
 import com.epam.shevchenko.controller.util.RequestReader;
@@ -34,7 +35,7 @@ public class FrontController {
 
 		// ask a command provider for appropriate command according to user
 		// rights
-		executionCommand = provider.getCommand(requestParams.get("command"), userStatus);
+		executionCommand = provider.getCommand(requestParams.get(ReqRespMapping.COMMAND), userStatus);
 
 		// execute command and get a response as a string
 		String response = executionCommand.execute(requestParams);
@@ -44,8 +45,8 @@ public class FrontController {
 	// Check authorized user rights according to saved sessions or gives him
 	// common rights
 	private UserStatus getUserStatus(Map<String, String> requestParams) {
-		if ((requestParams != null) && (requestParams.containsKey("sessionId"))) {
-			String sessionId = requestParams.get("sessionId");
+		if ((requestParams != null) && (requestParams.containsKey(ReqRespMapping.SESSION_ID))) {
+			String sessionId = requestParams.get(ReqRespMapping.SESSION_ID);
 			if ((openedSessions != null) && (openedSessions.containsKey(sessionId))) {
 				return openedSessions.get(sessionId).getUserStatus();
 			}

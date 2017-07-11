@@ -74,5 +74,11 @@ public class ResponseWriter {
 
 		return response;
 	}
-
+	
+	
+	public static String writeToResponse(String arg, String value) {
+		String response = "";
+		response += String.format(RESPONSE_PATTERN, arg, value);
+		return response;
+	}
 }

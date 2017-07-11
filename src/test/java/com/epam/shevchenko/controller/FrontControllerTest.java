@@ -21,24 +21,24 @@ public class FrontControllerTest {
 	public Object[][] dp() {
 		return new Object[][] {
 				
-//				new Object[] { "sessionId = user; command = bla_bla_bla", "wrong request" },
-//				new Object[] { "sessionId = user;  command  = add_book; book_title=First Book;  book_author = unknown", "Not enough rights for command" },
+//				new Object[] { "session_id = user; command = bla_bla_bla", "wrong request" },
+//				new Object[] { "session_id = user;  command  = add_book; book_title=First Book;  book_author = unknown", "Not enough rights for command" },
 //				new Object[] { "command = login; user_login=Nina; user_password=11111", "successfully logged" },
 //				new Object[] { "command = login;", "error log" },
 //				new Object[] { "command = registration; user_login=Kiki;  user_password=11111", "user created" },
-//				new Object[] { "sessionId = admin; command = add_book; book_title=First Book;  book_author = unknown", "Book has been successfully added" },
+//				new Object[] { "session_id = admin; command = add_book; book_title=First Book;  book_author = unknown", "Book has been successfully added" },
 //				new Object[] { "command = show_all_books", "" },
-//				new Object[] { "command = show_user_profile; sessionId = user; user_id = 4", "user_id_0 = 4;user_login_0 = hhh;user_telephone_0 = bnfg;" },
-//				new Object[] { "command = update_profile; sessionId = user; user_id = 3; user_login=Maxim;  user_password=changedPass2; user_telephone = +375 29 5557777", "user_id_0 = 3;user_login_0 = Maxim;user_telephone_0 = +375 29 5557777;" },
-//				new Object[] { "command = set_to_admin; sessionId = admin; user_id = 6", "user_id_0 = 6;user_login_0 = Kiki;user_telephone_0 = ;user_status_id_0 = ADMIN;" },
-//				new Object[] { "command = set_to_user; sessionId = super_admin; user_id = 6", "user_id_0 = 6;user_login_0 = Kiki;user_telephone_0 = ;user_status_id_0 = USER;" },
-//				new Object[] { "command = reserve_books; sessionId = user; user_id = 1; book_id_0 = 1", "Books was successfully added" },
-//				new Object[] { "command = refuse_from_order; sessionId = user; order_id = 2", "Order was successfully abandoned" },
-//				new Object[] { "command = refuse_from_book; sessionId = user; user_id = 1; book_id = 1", "Book was deleted from order" },
-//				new Object[] { "command = update_book; sessionId = admin; book_id = 2; book_title=First Book;  book_author = unknown", "book_id_0 = 2;book_title_0 = First Book;book_author_0 = unknown;" },
-//				new Object[] { "command = set_to_ban; sessionId = admin; user_id = 5", "user_id_0 = 5;user_login_0 = hhh;user_telephone_0 = ;user_status_id_0 = BANNED;" },
-//				new Object[] { "command = delete_book; sessionId = admin; book_id = 3", "book_id_0 = 3;book_title_0 = hhhh;book_author_0 = hhhh;" },
-				new Object[] { "command = confirm_order; sessionId = admin; order_id = 8", "Order was successfully leased" },
+//				new Object[] { "command = show_user_profile; session_id = user; user_id = 4", "user_id_0 = 4;user_login_0 = hhh;user_telephone_0 = bnfg;" },
+//				new Object[] { "command = update_profile; session_id = user; user_id = 3; user_login=Maxim;  user_password=changedPass2; user_telephone = +375 29 5557777", "user_id_0 = 3;user_login_0 = Maxim;user_telephone_0 = +375 29 5557777;" },
+//				new Object[] { "command = set_to_admin; session_id = admin; user_id = 6", "user_id_0 = 6;user_login_0 = Kiki;user_telephone_0 = ;user_status_id_0 = ADMIN;" },
+//				new Object[] { "command = set_to_user; session_id = super_admin; user_id = 6", "user_id_0 = 6;user_login_0 = Kiki;user_telephone_0 = ;user_status_id_0 = USER;" },
+//				new Object[] { "command = reserve_books; session_id = user; user_id = 1; book_id_0 = 1", "Books was successfully added" },
+//				new Object[] { "command = refuse_from_order; session_id = user; order_id = 2", "Order was successfully abandoned" },
+//				new Object[] { "command = refuse_from_book; session_id = user; user_id = 1; book_id = 1", "Book was deleted from order" },
+//				new Object[] { "command = update_book; session_id = admin; book_id = 2; book_title=First Book;  book_author = unknown", "book_id_0 = 2;book_title_0 = First Book;book_author_0 = unknown;" },
+//				new Object[] { "command = set_to_ban; session_id = admin; user_id = 5", "user_id_0 = 5;user_login_0 = hhh;user_telephone_0 = ;user_status_id_0 = BANNED;" },
+//				new Object[] { "command = delete_book; session_id = admin; book_id = 3", "book_id_0 = 3;book_title_0 = hhhh;book_author_0 = hhhh;" },
+				new Object[] { "command = confirm_order; session_id= admin; order_id = 8", "Order was successfully leased" },
 		};
 	}
 

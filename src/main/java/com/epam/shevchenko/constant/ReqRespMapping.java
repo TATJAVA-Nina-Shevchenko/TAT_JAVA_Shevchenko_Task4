@@ -23,6 +23,12 @@ public class ReqRespMapping {
 	//order fields
 	public static final Object ORDER_ID = "order_id";
 	
+	//other
+	public static final String COMMAND = "command";
+	public static final String SESSION_ID = "session_id";
+	public static final String SUCCESS_MESSAGE = "success_message";
+	public static final String ERROR_MESSAGE = "error_message";
+	
 	
 	
 	

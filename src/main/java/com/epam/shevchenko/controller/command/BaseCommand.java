@@ -7,12 +7,12 @@ import org.apache.log4j.Logger;
 
 import com.epam.shevchenko.bean.Book;
 import com.epam.shevchenko.bean.User;
+import com.epam.shevchenko.constant.ReqRespMapping;
 import com.epam.shevchenko.controller.util.ResponseWriter;
 
 public abstract class BaseCommand implements Command {
 	protected Logger log = Logger.getLogger(getClass());
 
-	
 	protected String createPositiveResponse(User user) {
 		// wraps user into list to use common method
 		List<User> wrapedUser = new ArrayList<User>();
@@ -21,7 +21,15 @@ public abstract class BaseCommand implements Command {
 		String response = ResponseWriter.writeUsersToResponse(wrapedUser);
 		return response;
 	}
-	
+
+	protected  String createPositiveResponse(User user, String sessionId) {
+		String response = "";
+		response += ResponseWriter.writeToResponse(ReqRespMapping.SESSION_ID, sessionId);
+		response += createPositiveResponse(user);
+		response = "successfully logged";
+		return response;
+	}
+
 	protected String createPositiveResponse(Book book) {
 		// wraps book into list to use common method
 		List<Book> wrapedBook = new ArrayList<Book>();
@@ -32,14 +40,11 @@ public abstract class BaseCommand implements Command {
 	}
 
 	protected String createPositiveResponse(String message) {
-		String  response = message;
-		return response;
+		return ResponseWriter.writeToResponse(ReqRespMapping.SUCCESS_MESSAGE, message);
 	}
-	
+
 	protected String createNegativeResponse(String message) {
-		String  response = message;
-		return response;
-		
+		return ResponseWriter.writeToResponse(ReqRespMapping.ERROR_MESSAGE, message);
 	}
 
 }

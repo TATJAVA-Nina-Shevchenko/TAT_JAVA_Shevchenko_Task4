@@ -35,7 +35,8 @@ public class Login extends BaseCommand {
 			String sessionId = addUserIntoSession(user);
 			response = createPositiveResponse(user, sessionId);
 		} else {
-			response = createNegativeResponse(user);
+			String message = "Fail login";
+			response = createNegativeResponse(message);
 		}
 		return response;
 	}
@@ -50,18 +51,6 @@ public class Login extends BaseCommand {
 		return newSessionId;
 	}
 
-	private String createNegativeResponse(User user) {
-		String response;
-		response = "error log";
-		// TODO formatted response 
-		return response;
-	}
-
-	private String createPositiveResponse(User user, String sessionId) {
-		String response;
-		// TODO formatted response 
-		response = "successfully logged"; 
-		return response;
-	}
+	
 
 }
