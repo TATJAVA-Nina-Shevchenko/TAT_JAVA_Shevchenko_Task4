@@ -10,8 +10,16 @@ import com.epam.shevchenko.controller.command.Command;
 import com.epam.shevchenko.controller.util.RequestReader;
 
 public class FrontController {
+	private static FrontController instance;
 	private final static CommandProvider provider = new CommandProvider();
 	private static Map<String, User> openedSessions = new HashMap<String, User>();
+	
+	public static FrontController getInstance(){
+		if(instance == null){
+			instance = new FrontController();
+		}
+		return instance;
+	}
 
 	public static Map<String, User> getOpenedSessions() {
 		return openedSessions;

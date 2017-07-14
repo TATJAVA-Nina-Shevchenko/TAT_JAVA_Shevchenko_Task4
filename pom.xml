@@ -23,6 +23,15 @@
     <scope>test</scope>
 </dependency>
 
+<!-- https://mvnrepository.com/artifact/org.testng/testng -->
+<dependency>
+    <groupId>org.testng</groupId>
+    <artifactId>testng</artifactId>
+    <version>6.10</version>
+    <scope>test</scope>
+</dependency>
+
+
     
     <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
 <dependency>
