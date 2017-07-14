@@ -1,6 +1,7 @@
 package com.epam.shevchenko.multithreading;
 
 import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.Callable;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.ExecutionException;
@@ -9,10 +10,19 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.LinkedBlockingQueue;
 
+import org.apache.log4j.Logger;
+
+import com.epam.shevchenko.controller.FrontController;
+
 public class Server implements Runnable {
+
+	private final static Logger log = Logger.getLogger(Server.class);
 	private Server instance;
 	private BlockingQueue<String> requests;
 	private ConcurrentMap<String, Future<String>> responses;
+
+	private static final int timeOut = 120_000; // in ms
+	private static final int timeOutStep = 100; // in ms
 
 	private boolean isStopped = false;
 
@@ -28,32 +38,43 @@ public class Server implements Runnable {
 		return instance;
 	}
 
-	public void sendRequest(String req) {
-		if (requests != null) {
-			try {
-				requests.put(req);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-	}
-
 	public String getResponse(String req) {
-		String response = null;
-		if (responses != null) {
-			try {
-				if (responses.get(req).isDone())
-					response = responses.get(req).get();
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (ExecutionException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+		if (isStopped()) {
+			log.error("Error by timeout");
+			return null;
 		}
-		return response;
+
+		// send request to the server
+		try {
+			requests.put(req);
+		} catch (InterruptedException e) {
+			log.error("error during putting request into server task queue: " + e);
+		}
+
+		// try to get response
+		String response = null;
+
+		try {
+
+			// wait for getting response for specified timeout
+			for (int i = 0; i < timeOut / timeOutStep; i++) {
+
+				if (responses.get(req) == null || !responses.get(req).isDone()) {
+					Thread.sleep(timeOutStep);
+				} else {
+					response = responses.remove(req).get();
+					return response;
+				}
+			}
+
+			responses.remove(req);
+			log.error("Error by timeout");
+
+		} catch (InterruptedException | ExecutionException e) {
+			log.error("error during getting response from server: " + e);
+		}
+		return null; // only error by timeout or other error can leads to this
+						// return
 	}
 
 	public void run() {
