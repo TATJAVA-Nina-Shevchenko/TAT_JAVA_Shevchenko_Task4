@@ -14,6 +14,11 @@ public class Executor implements Callable<String> {
 	@Override
 	public String call() throws Exception {
 		
+		//TODO delete this string
+		//To see difference in threads speed and sequence
+		Thread.sleep((int)(Math.random()*5000 + 1000));
+		//*********
+		
 		FrontController fController = FrontController.getInstance();
 		
 		String response = fController.executeTask(request);

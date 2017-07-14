@@ -1,7 +1,6 @@
 package com.epam.shevchenko.multithreading;
 
 import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.Callable;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.ExecutionException;
@@ -12,12 +11,11 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 import org.apache.log4j.Logger;
 
-import com.epam.shevchenko.controller.FrontController;
 
 public class Server implements Runnable {
 
 	private final static Logger log = Logger.getLogger(Server.class);
-	private Server instance;
+	private static Server instance;
 	private BlockingQueue<String> requests;
 	private ConcurrentMap<String, Future<String>> responses;
 
@@ -31,7 +29,7 @@ public class Server implements Runnable {
 		this.responses = new ConcurrentHashMap<String, Future<String>>();
 	}
 
-	public Server getInstance() {
+	public static Server getInstance() {
 		if (instance == null) {
 			instance = new Server();
 		}
@@ -44,8 +42,22 @@ public class Server implements Runnable {
 			return null;
 		}
 
+		//TODO delete this string
+				//To see difference in threads speed and sequence
+				try {
+					Thread.sleep((int)(Math.random()*5000 + 1000));
+				} catch (InterruptedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				//*********
+				
 		// send request to the server
 		try {
+			
+			//to prevent deletion the same requests
+			req += "request_id = " +  Math.random()*1000 + ";";
+			
 			requests.put(req);
 		} catch (InterruptedException e) {
 			log.error("error during putting request into server task queue: " + e);
@@ -63,6 +75,7 @@ public class Server implements Runnable {
 					Thread.sleep(timeOutStep);
 				} else {
 					response = responses.remove(req).get();
+//					response = responses.get(req).get();
 					return response;
 				}
 			}
