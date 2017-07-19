@@ -1,4 +1,4 @@
-package com.epam.shevchenko.multithreading;
+package com.epam.shevchenko.server;
 
 import java.util.concurrent.Callable;
 
@@ -16,7 +16,9 @@ public class Executor implements Callable<String> {
 		
 		//TODO delete this string
 		//To see difference in threads speed and sequence
+		System.out.println("Sleep start");
 		Thread.sleep((int)(Math.random()*5000 + 1000));
+		System.out.println("Sleep finish");
 		//*********
 		
 		FrontController fController = FrontController.getInstance();

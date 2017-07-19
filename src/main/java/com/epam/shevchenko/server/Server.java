@@ -1,4 +1,4 @@
-package com.epam.shevchenko.multithreading;
+package com.epam.shevchenko.server;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ConcurrentHashMap;
@@ -41,16 +41,6 @@ public class Server implements Runnable {
 			log.error("Error by timeout");
 			return null;
 		}
-
-		//TODO delete this string
-				//To see difference in threads speed and sequence
-				try {
-					Thread.sleep((int)(Math.random()*5000 + 1000));
-				} catch (InterruptedException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				//*********
 				
 		// send request to the server
 		try {

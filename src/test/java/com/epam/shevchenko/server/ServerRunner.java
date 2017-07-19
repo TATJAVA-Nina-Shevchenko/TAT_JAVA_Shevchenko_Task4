@@ -1,4 +1,6 @@
-package com.epam.shevchenko.multithreading;
+package com.epam.shevchenko.server;
+
+import com.epam.shevchenko.server.Server;
 
 public class ServerRunner {
 	private static final String REQUEST_01 = "session_id = user; command = bla_bla_bla;";

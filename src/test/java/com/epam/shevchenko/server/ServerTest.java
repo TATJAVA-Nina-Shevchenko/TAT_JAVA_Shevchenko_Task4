@@ -1,4 +1,4 @@
-package com.epam.shevchenko.multithreading;
+package com.epam.shevchenko.server;
 
 import static org.testng.Assert.assertEquals;
 
@@ -6,24 +6,24 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import com.epam.shevchenko.bean.User;
 import com.epam.shevchenko.constant.UserStatus;
 import com.epam.shevchenko.controller.FrontController;
+import com.epam.shevchenko.server.Server;
 
 public class ServerTest {
 	
 	// ******Data Providers***********
-		@DataProvider //(parallel=true)
+		@DataProvider (parallel=true)
 		public Object[][] dp() {
 			return new Object[][] {
 					
-					new Object[] { "session_id = user; command = bla_bla_bla", "error_message = Wrong request;" },
+					new Object[] { "session_id = user; command = bla_bla_bla;", "error_message = Wrong request;" },
 					new Object[] { "session_id = user;  command  = add_book; book_title=First Book;  book_author = unknown", "error_message = Not enough rights for command;" },
-					new Object[] { "command = login; user_login=Nina; user_password=11111", "session_id = invqnl7mtu8k6jk6fgr5vlbai3;user_id_0 = 1;user_login_0 = Nina;user_telephone_0 = +354;user_status_id_0 = SUPER_ADMIN;success_message = successfully logged;" },
+					new Object[] { "command = login; user_login=Nina; user_password=11111;", "session_id = invqnl7mtu8k6jk6fgr5vlbai3;user_id_0 = 1;user_login_0 = Nina;user_telephone_0 = +354;user_status_id_0 = SUPER_ADMIN;success_message = successfully logged;" },
 					new Object[] { "command = login;", "error_message = Fail login;" },
 //					new Object[] { "command = registration; user_login=Volha;  user_password=11111", "success_message = User was created;" },
 //					new Object[] { "session_id = admin; command = add_book; book_title=First Book 4;  book_author = unknown", "success_message = Book has been successfully added;" },
@@ -44,10 +44,8 @@ public class ServerTest {
 
 		@BeforeClass
 		//TODO generate new database
-		
-		
-		@BeforeTest
-		public void createArtificialSessions(){
+			
+			public void createArtificialSessions(){
 			Map<String, User> artificialSessions = new HashMap<String, User>();
 				
 			//user rights
@@ -72,36 +70,16 @@ public class ServerTest {
 		}
 		
 
-		@Test (dataProvider = "dp")//, threadPoolSize=3, invocationCount=1)
+		@Test (dataProvider = "dp", threadPoolSize=2, invocationCount=1)
 		public void testServer(String request,String responseExpected) {
-			
-			System.out.println( "Gogo");
-			try {
-				Thread.sleep((int)(Math.random()*5000 + 1000));
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-			Thread user = new Thread(){
-				public void run(){
-					System.out.println("Thread starts");
-					
-					
-					try {
-						Thread.sleep(5000);
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
+	
+					System.out.println("Thread starts " + Thread.currentThread().getName() );
+													
 					String responseActual = Server.getInstance().getResponse(request);
-					System.out.println("Thread: " + responseActual);
+					System.out.println("Thread: " + Thread.currentThread().getName() + " "+ responseActual);
 					
 					assertEquals(responseActual, responseExpected);
-				}
-			};
-			
-			user.start();
+	
 			  
 		}
 }
