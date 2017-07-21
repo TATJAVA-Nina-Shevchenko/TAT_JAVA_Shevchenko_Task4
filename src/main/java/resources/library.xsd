@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+
+targetNamespace="http://epam.com/shevchenko/librarySchema" xmlns:libr="http://epam.com/shevchenko/librarySchema">
+
+	<element name="library">
+		<complexType>
+			<sequence>
+				<element name="commands">
+					<complexType>
+						<sequence>
+							<element name="command" type="string" minOccurs="1"
+								maxOccurs="unbounded" />
+						</sequence>
+					</complexType>
+				</element>
+			</sequence>
+		</complexType>
+	</element>
+</schema>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<libr:library xmlns:libr="http://epam.com/shevchenko/librarySchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://epam.com/shevchenko/librarySchema library.xsd">
+	<commands>
+		<command>add book</command>
+		<command>confirm order</command>
+		<command>delete book</command>
+		<command>login</command>
+		<command>logout</command>
+		<command>not enough rights</command>
+		<command>refuse from order</command>
+		<command>registration</command>
+		<command>reserve books</command>
+		<command>set to admin</command>
+		<command>set to ban</command>
+		<command>set to user</command>
+		<command>show all books</command>
+		<command>show user profile</command>
+		<command>update book</command>
+		<command>update profile</command>
+		<command>wrong request</command>
+	</commands>
+</libr:library>
