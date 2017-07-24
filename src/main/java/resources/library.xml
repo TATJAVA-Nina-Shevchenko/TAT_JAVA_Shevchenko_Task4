@@ -6,7 +6,6 @@
 		<command>confirm order</command>
 		<command>delete book</command>
 		<command>login</command>
-		<command>logout</command>
 		<command>not enough rights</command>
 		<command>refuse from order</command>
 		<command>registration</command>

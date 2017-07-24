@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang3.text.WordUtils;
-
+import org.apache.log4j.Logger;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
@@ -17,7 +17,9 @@ import com.epam.shevchenko.controller.command.CommandName;
 import com.epam.shevchenko.controller.xmlparser.CommandSaxHandler;
 
 public class CommandUtil {
-	private static final String COMMAND_PACKAGE_PREFFICS = "com.epam.shevchenko.controller.command.impl.";
+	private final static Logger log = Logger.getLogger(CommandUtil.class);
+		
+	private final static String COMMAND_PACKAGE_PREFFICS = "com.epam.shevchenko.controller.command.impl.";
 
 	// java reflection
 	public static Map<CommandName, Command> getCommandMapFromStrings(List<String> commandList) {
@@ -34,8 +36,7 @@ public class CommandUtil {
 				commandMap.put(commandName, command);
 				
 			} catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				log.error("There is no such command implementation :" + commandString, e);
 			}
 		}
 
