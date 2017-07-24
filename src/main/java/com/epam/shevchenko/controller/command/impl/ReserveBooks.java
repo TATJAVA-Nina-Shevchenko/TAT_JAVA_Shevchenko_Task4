@@ -1,4 +1,4 @@
-package com.epam.shevchenko.controller.command.user;
+package com.epam.shevchenko.controller.command.impl;
 
 import java.util.ArrayList;
 import java.util.List;

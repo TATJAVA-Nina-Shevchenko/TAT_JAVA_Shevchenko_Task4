@@ -1,4 +1,4 @@
-package com.epam.shevchenko.controller.command.admin;
+package com.epam.shevchenko.controller.command.impl;
 
 import java.util.Map;
 

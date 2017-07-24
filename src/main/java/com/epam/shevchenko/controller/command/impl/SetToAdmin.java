@@ -1,4 +1,4 @@
-package com.epam.shevchenko.controller.command.admin.supe;
+package com.epam.shevchenko.controller.command.impl;
 
 import java.util.Map;
 
@@ -10,17 +10,17 @@ import com.epam.shevchenko.service.ClientService;
 import com.epam.shevchenko.service.ClientServiceImpl;
 import com.epam.shevchenko.service.exception.ServiceException;
 
-public class SetToUser extends BaseCommand {
+public class SetToAdmin extends BaseCommand{
 
 	@Override
 	public String execute(Map<String, String> requestParams) {
-		// id is not available as input for user
+		 //id is not available as input for user
 		int userId = Integer.parseInt(requestParams.get(ReqRespMapping.USER_ID));
-
+		
 		User user = new User();
 		user.setId(userId);
-		user.setUserStatus(UserStatus.USER);
-
+		user.setUserStatus(UserStatus.ADMIN);
+		
 		ClientService clientService = new ClientServiceImpl();
 
 		try {

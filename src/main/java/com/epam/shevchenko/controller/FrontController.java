@@ -11,7 +11,10 @@ import com.epam.shevchenko.controller.util.RequestReader;
 
 public class FrontController {
 	private static FrontController instance;
-	private final static CommandProvider provider = new CommandProvider();
+//	private final static CommandProvider provider = new CommandProvider();
+	
+	private static final String XML_URL = "src/main/java/resources/library.xml";
+	private final static CommandProvider provider = new CommandProvider(XML_URL);
 	private static Map<String, User> openedSessions = new HashMap<String, User>();
 	
 	public static FrontController getInstance(){

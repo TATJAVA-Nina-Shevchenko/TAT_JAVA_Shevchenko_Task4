@@ -1,4 +1,4 @@
-package com.epam.shevchenko.controller.command.user;
+package com.epam.shevchenko.controller.command.impl;
 
 import java.util.Map;
 
@@ -10,14 +10,13 @@ import com.epam.shevchenko.service.OrderService;
 import com.epam.shevchenko.service.OrderServiceImpl;
 import com.epam.shevchenko.service.exception.ServiceException;
 
-public class RefuseFromOrder extends BaseCommand {
+public class ConfirmOrder extends BaseCommand {
 
 	@Override
 	public String execute(Map<String, String> requestParams) {
-
 		Order order = new Order();
 		order.setId(Integer.parseInt(requestParams.get(ReqRespMapping.ORDER_ID)));
-		order.setOrderStatus(OrderStatus.REFUSED);
+		order.setOrderStatus(OrderStatus.LEASED);
 
 		OrderService orderService = new OrderServiceImpl();
 
@@ -29,10 +28,10 @@ public class RefuseFromOrder extends BaseCommand {
 
 		String response = "";
 		if (order != null) {
-			String message = "Order was successfully abandoned";
+			String message = "Order was successfully leased";
 			response = createPositiveResponse(message);
 		} else {
-			String message = "Fail refusing order";
+			String message = "Fail leasing order";
 			response = createNegativeResponse(message);
 		}
 		return response;
